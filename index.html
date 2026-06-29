@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1a3f6f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Kineba">
+<title>Kineba Rehabilitación</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --azul:#1a3f6f;
+  --azul-mid:#2563a8;
+  --azul-light:#e8f0fa;
+  --azul-border:#c5d8f0;
+  --verde:#2e7d52;
+  --verde-light:#e8f5ee;
+  --naranja:#b45309;
+  --naranja-light:#fef3c7;
+  --gris-bg:#f4f5f7;
+  --gris-card:#ffffff;
+  --gris-border:#e2e5eb;
+  --gris-text:#4a5568;
+  --text:#1a202c;
+  --radius:8px;
+  --sb-w:220px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--gris-bg);color:var(--text);font-size:14px;min-height:100vh}
+
+/* LAYOUT DESKTOP */
+.app{display:flex;min-height:100vh}
+.sidebar{width:var(--sb-w);background:var(--azul);flex-shrink:0;display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:100;transition:.25s}
+.main{margin-left:var(--sb-w);flex:1;min-height:100vh;padding-bottom:80px}
+
+/* SIDEBAR */
+.sb-logo{padding:1.25rem 1rem;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:10px}
+.sb-logo img{width:44px;height:44px;object-fit:contain;border-radius:6px;background:#fff;padding:3px}
+.sb-logo-text .nombre{color:#fff;font-size:14px;font-weight:700;letter-spacing:.5px}
+.sb-logo-text .sub{color:rgba(255,255,255,.5);font-size:9px;letter-spacing:1.5px;text-transform:uppercase}
+.sb-nav{padding:.75rem .75rem;flex:1;overflow-y:auto}
+.sb-label{font-size:10px;color:rgba(255,255,255,.35);letter-spacing:1.5px;text-transform:uppercase;padding:.5rem .75rem .25rem;font-weight:600}
+.sb-btn{display:flex;align-items:center;gap:10px;width:100%;background:transparent;border:none;color:rgba(255,255,255,.7);padding:9px 12px;border-radius:6px;font-size:13px;cursor:pointer;text-align:left;transition:.15s;margin-bottom:2px}
+.sb-btn svg{width:16px;height:16px;flex-shrink:0}
+.sb-btn:hover{background:rgba(255,255,255,.1);color:#fff}
+.sb-btn.active{background:rgba(255,255,255,.18);color:#fff;font-weight:500}
+.sb-footer{padding:1rem;border-top:1px solid rgba(255,255,255,.1)}
+.sb-footer p{color:rgba(255,255,255,.4);font-size:11px}
+
+/* MOBILE NAV */
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--azul);z-index:200;padding:4px 0 env(safe-area-inset-bottom)}
+.mobile-nav-inner{display:flex;justify-content:space-around}
+.mob-btn{display:flex;flex-direction:column;align-items:center;gap:2px;background:transparent;border:none;color:rgba(255,255,255,.6);padding:8px 12px;cursor:pointer;flex:1;font-size:10px;transition:.15s}
+.mob-btn svg{width:20px;height:20px}
+.mob-btn.active{color:#fff}
+.mob-btn.active svg{opacity:1}
+
+/* TOPBAR */
+.topbar{background:#fff;border-bottom:1px solid var(--gris-border);padding:.875rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar h1{font-size:15px;font-weight:600;color:var(--text)}
+.topbar-actions{display:flex;gap:8px}
+
+/* CONTENT */
+.content{padding:1.5rem}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.5rem}
+.stat-card{background:#fff;border-radius:var(--radius);border:1px solid var(--gris-border);padding:1rem 1.1rem}
+.stat-card .num{font-size:26px;font-weight:700;color:var(--azul-mid)}
+.stat-card .lbl{font-size:11px;color:var(--gris-text);margin-top:3px}
+.stat-card .sub{font-size:10px;color:var(--gris-text);margin-top:6px;padding-top:6px;border-top:1px solid var(--gris-border)}
+
+/* BANNER BIENVENIDA */
+.welcome-banner{background:linear-gradient(135deg,var(--azul) 0%,var(--azul-mid) 100%);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;color:#fff}
+.welcome-banner img{width:52px;height:52px;object-fit:contain;background:rgba(255,255,255,.15);border-radius:8px;padding:4px}
+.welcome-text h2{font-size:16px;font-weight:600}
+.welcome-text p{font-size:12px;opacity:.8;margin-top:2px}
+
+/* CARD */
+.card{background:#fff;border-radius:var(--radius);border:1px solid var(--gris-border);overflow:hidden}
+.card-header{padding:.875rem 1.25rem;border-bottom:1px solid var(--gris-border);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.card-header h2{font-size:13px;font-weight:600;color:var(--text)}
+.search-input{padding:6px 10px;border:1px solid var(--gris-border);border-radius:6px;font-size:13px;outline:none;min-width:0;flex:1;max-width:220px;color:var(--text)}
+.search-input:focus{border-color:var(--azul-mid)}
+
+/* TABLA */
+table{width:100%;border-collapse:collapse}
+th{padding:8px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--gris-text);text-transform:uppercase;letter-spacing:.5px;background:#fafbfc;border-bottom:1px solid var(--gris-border)}
+td{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--gris-border)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafbfc;cursor:pointer}
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:500}
+.badge-verde{background:var(--verde-light);color:var(--verde)}
+.badge-naranja{background:var(--naranja-light);color:var(--naranja)}
+.badge-azul{background:var(--azul-light);color:var(--azul-mid)}
+.badge-rojo{background:#fef2f2;color:#b91c1c}
+
+/* BOTONES */
+.btn{padding:8px 14px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;border:none;transition:.15s;display:inline-flex;align-items:center;gap:5px}
+.btn-primary{background:var(--azul-mid);color:#fff}
+.btn-primary:hover{background:var(--azul)}
+.btn-secondary{background:#fff;color:var(--text);border:1px solid var(--gris-border)}
+.btn-secondary:hover{background:#f7f8fa}
+.btn-danger{background:#fff;color:#b91c1c;border:1px solid #fecaca}
+.btn-sm{padding:5px 10px;font-size:12px}
+
+/* FORM */
+.form-section{margin-bottom:1.5rem}
+.form-section-title{font-size:11px;font-weight:600;color:var(--azul-mid);text-transform:uppercase;letter-spacing:.6px;margin-bottom:.75rem;padding-bottom:.4rem;border-bottom:1.5px solid var(--azul-border)}
+.form-grid{display:grid;gap:12px}
+.col2{grid-template-columns:1fr 1fr}
+.col3{grid-template-columns:1fr 1fr 1fr}
+.col1{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-size:10px;font-weight:600;color:var(--gris-text);text-transform:uppercase;letter-spacing:.4px}
+.field input,.field select,.field textarea{width:100%;padding:7px 10px;border:1px solid var(--gris-border);border-radius:6px;font-size:13px;color:var(--text);background:#fff;font-family:inherit;outline:none;transition:.15s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--azul-mid);box-shadow:0 0 0 2px var(--azul-light)}
+.field textarea{resize:vertical;min-height:68px;line-height:1.5}
+.radio-group,.check-group{display:flex;flex-wrap:wrap;gap:7px;padding-top:2px}
+.radio-opt,.check-opt{display:flex;align-items:center;gap:5px;padding:4px 10px;border:1px solid var(--gris-border);border-radius:6px;cursor:pointer;font-size:12px;transition:.15s;white-space:nowrap}
+.radio-opt:hover,.check-opt:hover{border-color:var(--azul-mid);background:var(--azul-light)}
+.radio-opt input,.check-opt input{accent-color:var(--azul-mid)}
+
+/* ACTIVIDADES MULTIPLES */
+.actividades-list{display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
+.actividad-item{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;align-items:end;background:var(--gris-bg);padding:8px;border-radius:6px}
+.btn-icon{background:transparent;border:none;cursor:pointer;color:#b91c1c;padding:4px;border-radius:4px;display:flex;align-items:center}
+.btn-icon:hover{background:#fef2f2}
+.btn-add{display:flex;align-items:center;gap:5px;background:transparent;border:1px dashed var(--azul-border);color:var(--azul-mid);padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;width:100%;justify-content:center;margin-top:4px;transition:.15s}
+.btn-add:hover{background:var(--azul-light)}
+
+/* CARGAS */
+.cargas-table{width:100%;border-collapse:collapse;font-size:12px}
+.cargas-table th{padding:6px 8px;background:var(--azul-light);color:var(--azul-mid);text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.4px}
+.cargas-table td{padding:6px 8px;border-bottom:1px solid var(--gris-border)}
+.cargas-table input{width:100%;border:none;background:transparent;font-size:12px;outline:none;color:var(--text);font-family:inherit}
+.cargas-table select{width:100%;border:none;background:transparent;font-size:12px;outline:none;color:var(--text);font-family:inherit}
+.cargas-table tr:hover td{background:#fafbfc}
+.srpe-calc{font-weight:600;color:var(--azul-mid)}
+
+/* EVA */
+.eva-wrap{background:var(--gris-bg);border-radius:var(--radius);padding:.875rem 1rem}
+.eva-nums{display:flex;justify-content:space-between;font-size:10px;color:var(--gris-text);margin-top:2px}
+.eva-slider{width:100%;margin:5px 0;accent-color:var(--azul-mid)}
+.eva-valor{font-size:26px;font-weight:700;color:var(--azul-mid);text-align:center;margin-top:2px}
+.eva-desc{font-size:10px;color:var(--gris-text);text-align:center}
+
+/* TESTS FUNCIONALES */
+.tests-region{display:flex;flex-direction:column;gap:8px}
+.test-item{border:1px solid var(--gris-border);border-radius:6px;overflow:hidden}
+.test-header{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#fafbfc;cursor:pointer}
+.test-header input[type=checkbox]{accent-color:var(--azul-mid);width:14px;height:14px}
+.test-nombre{font-size:13px;font-weight:500;flex:1}
+.test-toggle{background:transparent;border:none;cursor:pointer;color:var(--gris-text);font-size:11px;padding:2px 6px;border-radius:4px}
+.test-toggle:hover{background:var(--gris-border)}
+.test-desc{padding:8px 12px 10px;font-size:12px;color:var(--gris-text);line-height:1.5;border-top:1px solid var(--gris-border);display:none;background:#fff}
+.test-desc.open{display:block}
+
+/* PERFIL */
+.perfil-header{background:#fff;border-radius:var(--radius);border:1px solid var(--gris-border);padding:1.25rem;margin-bottom:1.1rem}
+.perfil-top{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.avatar{width:48px;height:48px;border-radius:50%;background:var(--azul-light);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:var(--azul-mid);flex-shrink:0}
+.perfil-info h2{font-size:16px;font-weight:700}
+.perfil-info p{font-size:12px;color:var(--gris-text);margin-top:2px}
+.perfil-meta{display:flex;flex-wrap:wrap;gap:6px}
+.meta-tag{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;background:var(--gris-bg);border-radius:20px;font-size:11px;color:var(--gris-text)}
+.perfil-tabs{display:flex;gap:2px;margin-bottom:1.1rem;background:#fff;border:1px solid var(--gris-border);border-radius:8px;padding:4px;overflow-x:auto}
+.tab-btn{padding:6px 14px;border-radius:6px;border:none;background:transparent;font-size:12px;font-weight:500;cursor:pointer;color:var(--gris-text);transition:.15s;white-space:nowrap}
+.tab-btn.active{background:var(--azul-mid);color:#fff}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* TIMELINE SESIONES */
+.timeline{display:flex;flex-direction:column;gap:10px}
+.timeline-item{background:#fff;border:1px solid var(--gris-border);border-radius:var(--radius);padding:1rem 1.1rem;border-left:3px solid var(--azul-mid);position:relative}
+.timeline-item .t-fecha{font-size:10px;font-weight:600;color:var(--gris-text);text-transform:uppercase;letter-spacing:.4px}
+.timeline-item .t-evol{font-size:13px;font-weight:500;margin:3px 0}
+.timeline-item .t-det{font-size:12px;color:var(--gris-text);line-height:1.5}
+.eva-badge{position:absolute;top:.875rem;right:1rem;background:var(--azul-light);color:var(--azul-mid);font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px}
+
+/* ESTUDIOS LINKS */
+.links-list{display:flex;flex-direction:column;gap:6px;margin-bottom:6px}
+.link-item{display:flex;align-items:center;gap:6px}
+.link-item input{flex:1;padding:6px 8px;border:1px solid var(--gris-border);border-radius:6px;font-size:12px;outline:none}
+.link-item input:focus{border-color:var(--azul-mid)}
+.link-open{background:var(--azul-light);color:var(--azul-mid);border:none;border-radius:6px;padding:6px 8px;cursor:pointer;font-size:11px;white-space:nowrap}
+.link-open:hover{background:var(--azul-border)}
+
+/* EMPTY */
+.empty{text-align:center;padding:2.5rem 1rem;color:var(--gris-text)}
+.empty p{font-size:13px}
+.empty .empty-action{margin-top:.75rem}
+
+/* BLOQUE DETALLE */
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.detail-block{background:#fafbfc;border-radius:6px;padding:.75rem 1rem}
+.detail-block h3{font-size:10px;font-weight:600;color:var(--azul-mid);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem}
+.detail-row{display:flex;flex-direction:column;margin-bottom:6px}
+.detail-row .dl{font-size:10px;color:var(--gris-text);font-weight:600;text-transform:uppercase;letter-spacing:.3px}
+.detail-row .dv{font-size:12px;color:var(--text);margin-top:1px}
+
+/* MODAL */
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:300;align-items:center;justify-content:center;padding:1rem}
+.modal-backdrop.open{display:flex}
+.modal{background:#fff;border-radius:12px;padding:1.5rem;width:100%;max-width:520px;max-height:90vh;overflow-y:auto}
+.modal h2{font-size:15px;font-weight:600;margin-bottom:1rem}
+.modal-footer{display:flex;gap:8px;justify-content:flex-end;margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--gris-border)}
+
+/* TEST MODAL */
+.test-modal-list{display:flex;flex-direction:column;gap:8px;max-height:50vh;overflow-y:auto}
+
+/* TOAST */
+.toast{position:fixed;bottom:5rem;right:1rem;background:var(--verde);color:#fff;padding:.7rem 1.1rem;border-radius:8px;font-size:13px;font-weight:500;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.show{opacity:1}
+
+/* PAGES */
+.page{display:none}
+.page.active{display:block}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%);display:none}
+  .main{margin-left:0!important}
+  .mobile-nav{display:block}
+  .stats{grid-template-columns:1fr 1fr}
+  .col2{grid-template-columns:1fr}
+  .col3{grid-template-columns:1fr}
+  .detail-grid{grid-template-columns:1fr}
+  .actividad-item{grid-template-columns:1fr 1fr;}
+  .actividad-item .field:nth-child(3){grid-column:1/3}
+  .content{padding:1rem}
+  .welcome-banner{flex-direction:column;text-align:center}
+  table thead th:nth-child(3),table thead th:nth-child(4),table td:nth-child(3),table td:nth-child(4){display:none}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- SIDEBAR DESKTOP -->
+<aside class="sidebar" id="sidebar">
+  <div class="sb-logo">
+    <div style="width:44px;height:44px;background:rgba(255,255,255,.15);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🏃</div>
+    <div class="sb-logo-text">
+      <div class="nombre">KINEBA</div>
+      <div class="sub">Rehabilitación</div>
+    </div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-label">Principal</div>
+    <button class="sb-btn active" onclick="nav('inicio',this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Inicio
+    </button>
+    <button class="sb-btn" onclick="nav('pacientes',this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Pacientes
+    </button>
+    <button class="sb-btn" onclick="nav('nueva-ficha',this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      Nueva ficha
+    </button>
+  </nav>
+  <div class="sb-footer">
+    <p>Julián &amp; Juampi · v2.0</p>
+  </div>
+</aside>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav">
+  <div class="mobile-nav-inner">
+    <button class="mob-btn active" onclick="nav('inicio',this)" id="mob-inicio">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Inicio
+    </button>
+    <button class="mob-btn" onclick="nav('pacientes',this)" id="mob-pacientes">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Pacientes
+    </button>
+    <button class="mob-btn" onclick="nav('nueva-ficha',this)" id="mob-ficha">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      Nueva ficha
+    </button>
+  </div>
+</nav>
+
+<div class="main">
+
+<!-- ══════════ INICIO ══════════ -->
+<div class="page active" id="page-inicio">
+  <div class="topbar"><h1>Inicio</h1></div>
+  <div class="content">
+    <div class="welcome-banner">
+      <div style="width:44px;height:44px;background:rgba(255,255,255,.15);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🏃</div>
+      <div class="welcome-text">
+        <h2>Kineba Rehabilitación</h2>
+        <p>Sistema de gestión clínica · Julián &amp; Juampi</p>
+      </div>
+    </div>
+    <div class="stats" id="stats-inicio"></div>
+    <div class="card">
+      <div class="card-header">
+        <h2>Últimos pacientes</h2>
+        <button class="btn btn-primary btn-sm" onclick="nav('nueva-ficha',document.querySelectorAll('.sb-btn')[2])">+ Nueva ficha</button>
+      </div>
+      <div id="tabla-recientes"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PACIENTES ══════════ -->
+<div class="page" id="page-pacientes">
+  <div class="topbar">
+    <h1>Pacientes</h1>
+    <div class="topbar-actions">
+      <input class="search-input" type="text" placeholder="Buscar..." oninput="filtrarPacientes(this.value)" id="buscador">
+      <button class="btn btn-primary btn-sm" onclick="nav('nueva-ficha',document.querySelectorAll('.sb-btn')[2])">+ Nuevo</button>
+    </div>
+  </div>
+  <div class="content">
+    <div class="card"><div id="tabla-pacientes"></div></div>
+  </div>
+</div>
+
+<!-- ══════════ PERFIL ══════════ -->
+<div class="page" id="page-perfil">
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:8px">
+      <button class="btn btn-secondary btn-sm" onclick="nav('pacientes',document.querySelectorAll('.sb-btn')[1])">← Volver</button>
+      <h1 id="perfil-topbar-nombre">Paciente</h1>
+    </div>
+    <button class="btn btn-primary btn-sm" onclick="abrirNuevaSesion()">+ Sesión</button>
+  </div>
+  <div class="content">
+    <div class="perfil-header">
+      <div class="perfil-top">
+        <div class="avatar" id="perfil-avatar">--</div>
+        <div class="perfil-info">
+          <h2 id="perfil-nombre">—</h2>
+          <p id="perfil-subtitulo">—</p>
+        </div>
+        <div style="margin-left:auto"><span class="badge badge-azul" id="perfil-kine"></span></div>
+      </div>
+      <div class="perfil-meta" id="perfil-meta"></div>
+    </div>
+    <div class="perfil-tabs">
+      <button class="tab-btn active" onclick="tab('ficha',this)">Ficha clínica</button>
+      <button class="tab-btn" onclick="tab('sesiones',this)">Sesiones</button>
+      <button class="tab-btn" onclick="tab('cargas',this)">Control de cargas</button>
+    </div>
+    <div class="tab-panel active" id="tab-ficha"><div id="perfil-ficha-content"></div></div>
+    <div class="tab-panel" id="tab-sesiones"><div id="perfil-sesiones-content"></div></div>
+    <div class="tab-panel" id="tab-cargas"><div id="perfil-cargas-content"></div></div>
+  </div>
+</div>
+
+<!-- ══════════ NUEVA FICHA ══════════ -->
+<div class="page" id="page-nueva-ficha">
+  <div class="topbar">
+    <h1>Nueva ficha de ingreso</h1>
+    <div class="topbar-actions">
+      <button class="btn btn-secondary btn-sm" onclick="limpiarFicha()">Limpiar</button>
+      <button class="btn btn-primary btn-sm" onclick="guardarFicha()">Guardar</button>
+    </div>
+  </div>
+  <div class="content">
+    <div class="card" style="padding:1.25rem">
+
+      <div class="form-section">
+        <div class="form-section-title">Datos del paciente</div>
+        <div class="form-grid col2">
+          <div class="field"><label>Nombre y apellido *</label><input type="text" id="f-nombre" placeholder="Apellido, Nombre"></div>
+          <div class="field"><label>Fecha de ingreso</label><input type="date" id="f-fecha"></div>
+          <div class="field"><label>Fecha de nacimiento</label><input type="date" id="f-nacimiento"></div>
+          <div class="field"><label>Sexo</label><select id="f-sexo"><option value="">—</option><option>Masculino</option><option>Femenino</option><option>Otro</option></select></div>
+          <div class="field"><label>DNI</label><input type="text" id="f-dni" placeholder="30.123.456"></div>
+          <div class="field"><label>Teléfono</label><input type="tel" id="f-tel" placeholder="11 5555-0000"></div>
+          <div class="field"><label>Cobertura médica</label><input type="text" id="f-cobertura" placeholder="OSDE 210 / Particular"></div>
+          <div class="field"><label>Médico derivante</label><input type="text" id="f-medico" placeholder="Dr. López"></div>
+          <div class="field"><label>Kinesiólogo</label><select id="f-kine"><option value="">—</option><option>Julián</option><option>Juampi</option></select></div>
+          <div class="field"><label>Ocupación</label><input type="text" id="f-ocupacion" placeholder="Docente / Empleado..."></div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Deporte y actividad física</div>
+        <div id="actividades-list" class="actividades-list"></div>
+        <button class="btn-add" onclick="addActividad()">+ Agregar actividad</button>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Diagnóstico y evaluación</div>
+        <div class="form-grid col2">
+          <div class="field"><label>Diagnóstico *</label><input type="text" id="f-diagnostico" placeholder="Esguince LLE grado II tobillo derecho"></div>
+          <div class="field"><label>Región afectada</label>
+            <select id="f-region" onchange="cargarTests(this.value)">
+              <option value="">—</option>
+              <option>Columna cervical</option><option>Columna lumbar</option><option>Hombro</option>
+              <option>Codo</option><option>Muñeca / mano</option><option>Cadera</option>
+              <option>Rodilla</option><option>Tobillo / pie</option><option>Muslo</option><option>Pierna</option><option>Otro</option>
+            </select>
+          </div>
+          <div class="field"><label>Tipo de evolución</label>
+            <select id="f-evolucion"><option value="">—</option><option>Aguda (0–7 días)</option><option>Subaguda (1–6 semanas)</option><option>Crónica (+6 semanas)</option><option>Post-quirúrgica</option><option>Recidiva</option></select>
+          </div>
+          <div class="field"><label>Lateralidad</label>
+            <div class="radio-group">
+              <label class="radio-opt"><input type="radio" name="lat" value="Derecho"> Derecho</label>
+              <label class="radio-opt"><input type="radio" name="lat" value="Izquierdo"> Izquierdo</label>
+              <label class="radio-opt"><input type="radio" name="lat" value="Bilateral"> Bilateral</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-grid col1" style="margin-top:12px">
+          <div class="field"><label>Mecanismo lesional</label><input type="text" id="f-mecanismo" placeholder="Caída con pie en inversión durante partido..."></div>
+          <div class="field"><label>Signos y síntomas</label><textarea id="f-sintomas" placeholder="Dolor, edema, limitación de movimiento..."></textarea></div>
+          <div class="field"><label>Antecedentes de lesión</label><input type="text" id="f-antecedentes" placeholder="Esguince homolateral 2021 / Ninguno..."></div>
+        </div>
+        <div class="form-section-title" style="margin-top:1rem">Estudios complementarios</div>
+        <div id="links-list" class="links-list"></div>
+        <button class="btn-add" onclick="addLink()">+ Agregar estudio o link</button>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Post-quirúrgico (si aplica)</div>
+        <div class="form-grid col2">
+          <div class="field"><label>Procedimiento</label><input type="text" id="f-cirugia" placeholder="Reconstrucción LCA / Meniscectomía..."></div>
+          <div class="field"><label>Fecha de cirugía</label><input type="date" id="f-fecha-cx" oninput="calcSemanaPQ()"></div>
+          <div class="field"><label>Cirujano</label><input type="text" id="f-cirujano" placeholder="Dr. García"></div>
+          <div class="field"><label>Semana post-qx <span style="font-size:10px;color:var(--azul-mid)">(calculada automáticamente)</span></label>
+            <input type="text" id="f-semana-pq" placeholder="Se calcula desde la fecha de cirugía" readonly style="background:#fafbfc;color:var(--azul-mid);font-weight:600">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Contraindicaciones</div>
+        <div class="check-group">
+          <label class="check-opt"><input type="checkbox" id="ci-ca" value="Calor (Ca)"> Ca (calor)</label>
+          <label class="check-opt"><input type="checkbox" id="ci-mp" value="Marcapasos"> Marcapasos</label>
+          <label class="check-opt"><input type="checkbox" id="ci-emb" value="Embarazo"> Embarazo</label>
+          <label class="check-opt"><input type="checkbox" id="ci-op" value="Osteoporosis"> Osteoporosis</label>
+          <label class="check-opt"><input type="checkbox" id="ci-pr" value="Prótesis"> Prótesis</label>
+          <label class="check-opt"><input type="checkbox" id="ci-as" value="Alt. sensibilidad"> Alt. sensibilidad</label>
+          <label class="check-opt"><input type="checkbox" id="ci-diu" value="DIU"> DIU</label>
+          <label class="check-opt"><input type="checkbox" id="ci-hta" value="HTA"> HTA</label>
+          <label class="check-opt"><input type="checkbox" id="ci-dbt" value="DBT"> DBT</label>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Evaluación funcional</div>
+        <div class="form-grid col2">
+          <div class="field"><label>ROM miembro sano</label><input type="text" id="f-rom-sano" placeholder="Flex 0–130° / Ext completa..."></div>
+          <div class="field"><label>ROM miembro afectado</label><input type="text" id="f-rom-afec" placeholder="Flex 0–90° dolorosa..."></div>
+          <div class="field"><label>Fuerza muscular</label><input type="text" id="f-fuerza" placeholder="Cuádriceps 4/5 / Isquio 3/5..."></div>
+        </div>
+        <div style="margin-top:1rem">
+          <div class="form-section-title">Escala EVA</div>
+          <div class="form-grid col2" style="margin-top:8px">
+            <div class="eva-wrap">
+              <div style="font-size:10px;font-weight:600;color:var(--gris-text);margin-bottom:4px">REPOSO</div>
+              <input type="range" class="eva-slider" id="f-eva-rep" min="0" max="10" step="1" value="0" oninput="updEva('rep')">
+              <div class="eva-nums"><span>0</span><span>5</span><span>10</span></div>
+              <div class="eva-valor" id="eva-rep-val">0</div>
+              <div class="eva-desc" id="eva-rep-desc">Sin dolor</div>
+            </div>
+            <div class="eva-wrap">
+              <div style="font-size:10px;font-weight:600;color:var(--gris-text);margin-bottom:4px">ACTIVIDAD</div>
+              <input type="range" class="eva-slider" id="f-eva-act" min="0" max="10" step="1" value="0" oninput="updEva('act')">
+              <div class="eva-nums"><span>0</span><span>5</span><span>10</span></div>
+              <div class="eva-valor" id="eva-act-val">0</div>
+              <div class="eva-desc" id="eva-act-desc">Sin dolor</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:1rem">
+          <div class="form-section-title">Tests funcionales</div>
+          <div id="tests-container" style="margin-top:8px">
+            <p style="font-size:12px;color:var(--gris-text)">Seleccioná la región afectada arriba para ver los tests correspondientes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Plan y objetivos</div>
+        <div class="form-grid col1">
+          <div class="field"><label>Objetivos de tratamiento</label><textarea id="f-objetivos" placeholder="Reducir dolor / Recuperar ROM / Retorno al deporte..."></textarea></div>
+          <div class="field"><label>Plan inicial</label><textarea id="f-plan" placeholder="Fase 1: Fisioterapia analgésica... Fase 2: Kinesioterapia activa..."></textarea></div>
+          <div class="field"><label>Observaciones</label><textarea id="f-obs" placeholder="Anotaciones adicionales..."></textarea></div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:8px;justify-content:flex-end;padding-top:1rem;border-top:1px solid var(--gris-border)">
+        <button class="btn btn-secondary" onclick="limpiarFicha()">Limpiar</button>
+        <button class="btn btn-primary" onclick="guardarFicha()">Guardar ficha</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /app -->
+
+<!-- MODAL SESION -->
+<div class="modal-backdrop" id="modal-sesion">
+  <div class="modal">
+    <h2>Registrar sesión</h2>
+    <div class="form-grid col1" style="gap:12px">
+      <div class="field"><label>Fecha</label><input type="date" id="ses-fecha"></div>
+      <div class="form-grid col2">
+        <div class="eva-wrap">
+          <div style="font-size:10px;font-weight:600;color:var(--gris-text);margin-bottom:4px">EVA REPOSO</div>
+          <input type="range" class="eva-slider" id="ses-eva-rep" min="0" max="10" step="1" value="0" oninput="updSesEva('rep')">
+          <div class="eva-nums"><span>0</span><span>5</span><span>10</span></div>
+          <div class="eva-valor" id="ses-eva-rep-val" style="font-size:20px">0</div>
+        </div>
+        <div class="eva-wrap">
+          <div style="font-size:10px;font-weight:600;color:var(--gris-text);margin-bottom:4px">EVA ACTIVIDAD</div>
+          <input type="range" class="eva-slider" id="ses-eva-act" min="0" max="10" step="1" value="0" oninput="updSesEva('act')">
+          <div class="eva-nums"><span>0</span><span>5</span><span>10</span></div>
+          <div class="eva-valor" id="ses-eva-act-val" style="font-size:20px">0</div>
+        </div>
+      </div>
+      <div class="field"><label>Técnicas utilizadas</label><input type="text" id="ses-tecnicas" placeholder="TENS, ultrasonido, ejercicios propioceptivos..."></div>
+      <div class="field"><label>Evolución</label>
+        <select id="ses-evolucion">
+          <option value="">—</option>
+          <option>Muy buena — superó expectativas</option>
+          <option>Buena — según lo esperado</option>
+          <option>Regular — progreso lento</option>
+          <option>Sin cambios</option>
+          <option>Retroceso</option>
+        </select>
+      </div>
+      <div class="field"><label>Notas</label><textarea id="ses-notas" rows="3" placeholder="Toleró bien los ejercicios. Refiere mejoría del dolor..."></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="cerrarModal('modal-sesion')">Cancelar</button>
+      <button class="btn btn-primary" onclick="guardarSesion()">Guardar sesión</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const TESTS = {
+  "Rodilla": [
+    {"nombre": "Lachman", "desc": "Evalúa integridad del LCA. Paciente en decúbito dorsal, rodilla en 20-30° de flexión. Se tracciona la tibia anteriormente. Positivo: traslación anterior aumentada sin tope firme."},
+    {"nombre": "Cajón anterior", "desc": "Similar a Lachman pero con rodilla en 90°. Positivo si hay traslación anterior de tibia mayor a 6mm."},
+    {"nombre": "McMurray", "desc": "Evalúa meniscos. Flexión máxima de rodilla + rotación interna/externa + extensión. Positivo: click o dolor en línea articular."},
+    {"nombre": "Thessaly", "desc": "Paciente en un pie con rodilla en 20° de flexión, hace rotación interna y externa del cuerpo. Positivo: dolor o bloqueo en línea articular."},
+    {"nombre": "Varo / Valgo stress", "desc": "Evalúa LCL y LCM. Rodilla en extensión y 30° de flexión. Se aplica stress en varo (LCL) y valgo (LCM). Positivo: apertura articular aumentada."},
+    {"nombre": "Pivot shift", "desc": "Evalúa insuficiencia del LCA. Rodilla extendida + rotación interna de tibia + valgo progresivo. Positivo: subluxación de platillo tibial lateral."}
+  ],
+  "Tobillo / pie": [
+    {"nombre": "Cajón anterior de tobillo", "desc": "Evalúa LLE (fascículo anterior). Tobillo en posición neutra, se tracciona el pie hacia adelante. Positivo: traslación anterior aumentada vs lado sano."},
+    {"nombre": "Stress en inversión", "desc": "Evalúa LLE. Se aplica stress en inversión al tobillo. Positivo: mayor apertura articular que el lado contralateral."},
+    {"nombre": "Thompson", "desc": "Evalúa integridad del tendón de Aquiles. Paciente en prono, se comprime el gemelo. Positivo: ausencia de flexión plantar del pie."},
+    {"nombre": "FABER (cadera/SI)", "desc": "Flexión, Abducción y Rotación Externa de cadera. Positivo: dolor en región inguinal (cadera) o sacroilíaca (SI)."}
+  ],
+  "Hombro": [
+    {"nombre": "Neer", "desc": "Evalúa síndrome subacromial. Estabilización de escápula + elevación pasiva del brazo en rotación interna. Positivo: dolor en arco entre 70-120°."},
+    {"nombre": "Hawkins-Kennedy", "desc": "Hombro y codo en 90° + rotación interna forzada. Positivo: dolor en región subacromial."},
+    {"nombre": "Empty can (Jobe)", "desc": "Evalúa supraespinoso. Abducción a 90° en el plano de la escápula, rotación interna (lata vacía) + resistencia. Positivo: dolor o debilidad."},
+    {"nombre": "Aprehensión", "desc": "Evalúa inestabilidad anterior. Abducción 90° + rotación externa pasiva. Positivo: sensación de que el hombro se va a luxar."},
+    {"nombre": "Speed", "desc": "Evalúa tendón largo del bíceps. Codo extendido, supinación, elevación con resistencia. Positivo: dolor en corredera bicipital."},
+    {"nombre": "O'Brien (SLAP)", "desc": "Evalúa lesiones SLAP. Flexión 90°, aducción 10°, rotación interna + resistencia. Positivo si duele y mejora al rotar externamente."}
+  ],
+  "Columna lumbar": [
+    {"nombre": "Lasègue (SLR)", "desc": "Evalúa compromiso radicular L4-S1. Elevación pasiva de la pierna extendida. Positivo: dolor irradiado por debajo de la rodilla entre 30-70°."},
+    {"nombre": "Slump test", "desc": "Evalúa tensión neural. Posición sentada, flexión de columna + extensión de rodilla + flexión dorsal de pie. Positivo: reproducción de síntomas neurales."},
+    {"nombre": "FABER", "desc": "Evalúa cadera y articulación sacroilíaca. Positivo: dolor en región inguinal o sacroilíaca."},
+    {"nombre": "Prueba de Schober", "desc": "Evalúa movilidad lumbar. Se marca L5 y 10cm arriba. Al flexionar, debe aumentar al menos 5cm. Positivo (limitación): aumento menor."}
+  ],
+  "Columna cervical": [
+    {"nombre": "Spurling", "desc": "Evalúa compresión radicular cervical. Inclinación lateral + rotación + compresión axial. Positivo: dolor irradiado al miembro superior."},
+    {"nombre": "Distracción cervical", "desc": "Contraprueba de Spurling. Tracción cervical alivia síntomas radiculares. Positivo (bueno): alivio del dolor con la tracción."},
+    {"nombre": "Adson", "desc": "Evalúa síndrome del desfiladero torácico. Extensión cervical + rotación ipsilateral + inspiración profunda. Positivo: desaparición del pulso radial."}
+  ],
+  "Cadera": [
+    {"nombre": "FABER / Patrick", "desc": "Flexión, Abducción y Rotación Externa. Positivo: dolor inguinal (cadera) o sacroilíaco (SI)."},
+    {"nombre": "FADIR", "desc": "Flexión, Aducción y Rotación Interna. Evalúa choque femoroacetabular. Positivo: dolor inguinal anterior."},
+    {"nombre": "Thomas", "desc": "Evalúa flexores de cadera. Decúbito dorsal, una rodilla al pecho. Positivo: la pierna contraria se eleva de la camilla (contractura de iliopsoas)."},
+    {"nombre": "Ober", "desc": "Evalúa banda iliotibial. Decúbito lateral, abducción pasiva y extensión de cadera. Positivo: la pierna no desciende libremente."}
+  ],
+  "Hombro": [
+    {"nombre": "Neer", "desc": "Evalúa síndrome subacromial. Positivo: dolor al elevar el brazo en rotación interna."},
+    {"nombre": "Hawkins-Kennedy", "desc": "Hombro 90° + rotación interna forzada. Positivo: dolor subacromial."},
+    {"nombre": "Empty can (Jobe)", "desc": "Evalúa supraespinoso. Positivo: dolor o debilidad en abducción con rotación interna."}
+  ],
+  "Muñeca / mano": [
+    {"nombre": "Finkelstein", "desc": "Evalúa tenosinovitis de De Quervain. Pulgar en palma + desviación cubital. Positivo: dolor en apófisis estiloides del radio."},
+    {"nombre": "Phalen", "desc": "Evalúa síndrome del túnel carpiano. Flexión máxima de muñeca por 60 segundos. Positivo: parestesias en territorio del nervio mediano."},
+    {"nombre": "Tinel en muñeca", "desc": "Percusión sobre el túnel carpiano. Positivo: parestesias en territorio del nervio mediano."}
+  ],
+  "Codo": [
+    {"nombre": "Cozen (epicondilitis lateral)", "desc": "Evalúa epicondilitis lateral (codo de tenista). Extensión de muñeca con resistencia con codo extendido. Positivo: dolor en epicóndilo lateral."},
+    {"nombre": "Test de la silla", "desc": "Levantar silla con codo extendido y antebrazo pronado. Positivo: dolor epicondíleo lateral."},
+    {"nombre": "Epicondilitis medial", "desc": "Evalúa epitrocleítis (codo de golfista). Flexión de muñeca con resistencia. Positivo: dolor en epitróclea."}
+  ]
+};
+const EVA_DESC = ['Sin dolor','Muy leve','Leve','Leve-moderado','Moderado','Moderado','Moderado-intenso','Intenso','Muy intenso','Severo','El peor dolor posible'];
+
+let pacientes = JSON.parse(localStorage.getItem('kineba_v2')||'[]');
+let pacienteActual = null;
+let actividadesCount = 0;
+let linksCount = 0;
+
+// ── NAVEGACIÓN ──
+function nav(pg, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sb-btn,.mob-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-'+pg).classList.add('active');
+  if(btn) btn.classList.add('active');
+  const sbIdx = {'inicio':0,'pacientes':1,'nueva-ficha':2};
+  const sbs = document.querySelectorAll('.sb-btn');
+  const mobs = document.querySelectorAll('.mob-btn');
+  if(pg in sbIdx) { sbs[sbIdx[pg]]?.classList.add('active'); mobs[sbIdx[pg]]?.classList.add('active'); }
+  if(pg==='inicio') renderInicio();
+  if(pg==='pacientes') renderPacientes('');
+  if(pg==='nueva-ficha') { document.getElementById('f-fecha').value=hoy(); calcSemanaPQ(); }
+}
+
+function tab(nm, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+nm).classList.add('active');
+  btn.classList.add('active');
+  if(nm==='cargas') renderCargas();
+}
+
+function hoy() { return new Date().toISOString().split('T')[0]; }
+function fmtFecha(s) { if(!s) return '—'; const d=new Date(s+'T12:00'); return d.toLocaleDateString('es-AR',{day:'2-digit',month:'short',year:'numeric'}); }
+function iniciales(n) { const p=n.trim().split(/[\s,]+/); return((p[0]?.[0]||'')+(p[1]?.[0]||p[0]?.[1]||'')).toUpperCase(); }
+
+// ── EVA ──
+function updEva(t) {
+  const v=document.getElementById('f-eva-'+t).value;
+  document.getElementById('eva-'+t+'-val').textContent=v;
+  document.getElementById('eva-'+t+'-desc').textContent=EVA_DESC[v];
+}
+function updSesEva(t) {
+  document.getElementById('ses-eva-'+t+'-val').textContent=document.getElementById('ses-eva-'+t).value;
+}
+
+// ── SEMANA POST-QX ──
+function calcSemanaPQ() {
+  const d=document.getElementById('f-fecha-cx').value;
+  if(!d) { document.getElementById('f-semana-pq').value=''; return; }
+  const dias=Math.floor((new Date()-new Date(d+'T12:00'))/(1000*60*60*24));
+  const sem=Math.floor(dias/7);
+  document.getElementById('f-semana-pq').value=sem>0?'Semana '+sem+' post-quirúrgica':'Menos de 1 semana';
+}
+
+// ── ACTIVIDADES ──
+function addActividad() {
+  const id=++actividadesCount;
+  const el=document.createElement('div');
+  el.className='actividad-item';
+  el.id='act-'+id;
+  el.innerHTML=`
+    <div class="field"><label>Deporte / actividad</label><input type="text" id="act-dep-${id}" placeholder="Fútbol / Hockey..."></div>
+    <div class="field"><label>Nivel</label><select id="act-niv-${id}"><option value="">—</option><option>Recreativo</option><option>Amateur competitivo</option><option>Semiprofesional</option><option>Profesional</option></select></div>
+    <div class="field"><label>Frecuencia semanal</label><input type="text" id="act-frec-${id}" placeholder="2x semana / Diario..."></div>
+    <button class="btn-icon" onclick="document.getElementById('act-${id}').remove()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+    </button>`;
+  document.getElementById('actividades-list').appendChild(el);
+}
+
+function getActividades() {
+  const items=[];
+  document.querySelectorAll('.actividad-item').forEach(el=>{
+    const id=el.id.split('-')[1];
+    const dep=document.getElementById('act-dep-'+id)?.value;
+    if(dep) items.push({deporte:dep,nivel:document.getElementById('act-niv-'+id)?.value||'',frecuencia:document.getElementById('act-frec-'+id)?.value||''});
+  });
+  return items;
+}
+
+// ── LINKS ESTUDIOS ──
+function addLink() {
+  const id=++linksCount;
+  const el=document.createElement('div');
+  el.className='link-item';
+  el.id='link-'+id;
+  el.innerHTML=`
+    <input type="text" id="link-val-${id}" placeholder="Descripción o URL (ej: https://drive.google.com/...)">
+    <button class="link-open" onclick="abrirLink(${id})">Abrir</button>
+    <button class="btn-icon" onclick="document.getElementById('link-${id}').remove()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>`;
+  document.getElementById('links-list').appendChild(el);
+}
+
+function abrirLink(id) {
+  const url=document.getElementById('link-val-'+id)?.value;
+  if(url && (url.startsWith('http'))) window.open(url,'_blank');
+  else if(url) toast('Ingresá una URL válida (debe empezar con http)');
+}
+
+function getLinks() {
+  const items=[];
+  document.querySelectorAll('.link-item').forEach(el=>{
+    const id=el.id.split('-')[1];
+    const v=document.getElementById('link-val-'+id)?.value;
+    if(v) items.push(v);
+  });
+  return items;
+}
+
+// ── TESTS FUNCIONALES ──
+function cargarTests(region) {
+  const cont=document.getElementById('tests-container');
+  if(!region||!TESTS[region]) {
+    cont.innerHTML='<p style="font-size:12px;color:var(--gris-text)">Seleccioná la región afectada para ver los tests.</p>';
+    return;
+  }
+  const tests=TESTS[region];
+  cont.innerHTML='<div class="tests-region">'+tests.map((t,i)=>`
+    <div class="test-item">
+      <div class="test-header">
+        <input type="checkbox" id="test-${i}" value="${t.nombre}">
+        <label class="test-nombre" for="test-${i}">${t.nombre}</label>
+        <button class="test-toggle" onclick="toggleDesc(${i})">¿Cómo se hace?</button>
+      </div>
+      <div class="test-desc" id="desc-${i}">${t.desc}</div>
+    </div>`).join('')+'</div>';
+}
+
+function toggleDesc(i) {
+  const el=document.getElementById('desc-'+i);
+  el.classList.toggle('open');
+}
+
+function getTests() {
+  const r=[];
+  document.querySelectorAll('[id^="test-"]').forEach(el=>{
+    if(el.checked) r.push(el.value);
+  });
+  return r;
+}
+
+// ── GUARDAR FICHA ──
+function guardarFicha() {
+  const nombre=document.getElementById('f-nombre').value.trim();
+  if(!nombre) { alert('Ingresá el nombre del paciente'); return; }
+  const cis=['ci-ca','ci-mp','ci-emb','ci-op','ci-pr','ci-as','ci-diu','ci-hta','ci-dbt'].map(id=>document.getElementById(id)).filter(el=>el.checked).map(el=>el.value);
+  const lat=document.querySelector('input[name="lat"]:checked')?.value||'';
+  const p={
+    id:Date.now().toString(),
+    nombre,
+    fecha:document.getElementById('f-fecha').value,
+    nacimiento:document.getElementById('f-nacimiento').value,
+    sexo:document.getElementById('f-sexo').value,
+    dni:document.getElementById('f-dni').value,
+    tel:document.getElementById('f-tel').value,
+    cobertura:document.getElementById('f-cobertura').value,
+    medico:document.getElementById('f-medico').value,
+    kine:document.getElementById('f-kine').value,
+    ocupacion:document.getElementById('f-ocupacion').value,
+    actividades:getActividades(),
+    diagnostico:document.getElementById('f-diagnostico').value,
+    region:document.getElementById('f-region').value,
+    evolucion:document.getElementById('f-evolucion').value,
+    lateralidad:lat,
+    mecanismo:document.getElementById('f-mecanismo').value,
+    sintomas:document.getElementById('f-sintomas').value,
+    antecedentes:document.getElementById('f-antecedentes').value,
+    estudios:getLinks(),
+    cirugia:document.getElementById('f-cirugia').value,
+    fechaCx:document.getElementById('f-fecha-cx').value,
+    cirujano:document.getElementById('f-cirujano').value,
+    semanaPQ:document.getElementById('f-semana-pq').value,
+    contraindicaciones:cis,
+    romSano:document.getElementById('f-rom-sano').value,
+    romAfec:document.getElementById('f-rom-afec').value,
+    fuerza:document.getElementById('f-fuerza').value,
+    tests:getTests(),
+    evaRep:document.getElementById('f-eva-rep').value,
+    evaAct:document.getElementById('f-eva-act').value,
+    objetivos:document.getElementById('f-objetivos').value,
+    plan:document.getElementById('f-plan').value,
+    obs:document.getElementById('f-obs').value,
+    sesiones:[],
+    cargas:[],
+    estado:'En curso'
+  };
+  pacientes.unshift(p);
+  save();
+  toast('Ficha guardada');
+  limpiarFicha();
+  nav('pacientes',document.querySelectorAll('.sb-btn')[1]);
+}
+
+function limpiarFicha() {
+  document.querySelectorAll('#page-nueva-ficha input:not([type=radio]):not([type=checkbox]),[id^=f-] select,#page-nueva-ficha textarea').forEach(el=>el.value='');
+  document.querySelectorAll('#page-nueva-ficha input[type=checkbox],#page-nueva-ficha input[type=radio]').forEach(el=>el.checked=false);
+  ['f-eva-rep','f-eva-act'].forEach(id=>{document.getElementById(id).value=0;});
+  updEva('rep'); updEva('act');
+  document.getElementById('f-fecha').value=hoy();
+  document.getElementById('actividades-list').innerHTML='';
+  document.getElementById('links-list').innerHTML='';
+  document.getElementById('tests-container').innerHTML='<p style="font-size:12px;color:var(--gris-text)">Seleccioná la región afectada para ver los tests.</p>';
+  actividadesCount=0; linksCount=0;
+}
+
+// ── RENDER INICIO ──
+function renderInicio() {
+  const act=pacientes.filter(p=>p.estado==='En curso').length;
+  const alt=pacientes.filter(p=>p.estado==='Alta').length;
+  const sem=new Date(Date.now()-7*24*60*60*1000).toISOString().split('T')[0];
+  const rec=pacientes.filter(p=>p.fecha>=sem).length;
+  document.getElementById('stats-inicio').innerHTML=`
+    <div class="stat-card"><div class="num">${pacientes.length}</div><div class="lbl">Pacientes totales</div><div class="sub">${act} en curso · ${alt} de alta</div></div>
+    <div class="stat-card"><div class="num">${rec}</div><div class="lbl">Ingresos esta semana</div></div>
+    <div class="stat-card"><div class="num">${pacientes.filter(p=>p.kine==='Julián').length} / ${pacientes.filter(p=>p.kine==='Juampi').length}</div><div class="lbl">Julián / Juampi</div></div>`;
+  const ult=pacientes.slice(0,8);
+  document.getElementById('tabla-recientes').innerHTML=ult.length?tablaHTML(ult):'<div class="empty"><p>No hay pacientes cargados.</p><div class="empty-action"><button class="btn btn-primary btn-sm" onclick="nav('nueva-ficha',document.querySelectorAll('.sb-btn')[2])">Crear primera ficha</button></div></div>';
+}
+
+// ── RENDER PACIENTES ──
+function renderPacientes(q) {
+  const filtrados=q?pacientes.filter(p=>p.nombre.toLowerCase().includes(q.toLowerCase())):pacientes;
+  document.getElementById('tabla-pacientes').innerHTML=filtrados.length?tablaHTML(filtrados):'<div class="empty"><p>'+(q?`Sin resultados para "${q}"`:  'No hay pacientes.')+'</p></div>';
+}
+function filtrarPacientes(q) { renderPacientes(q); }
+
+function tablaHTML(lista) {
+  return`<table><thead><tr><th>Paciente</th><th>Diagnóstico</th><th>Kinesiólogo</th><th>Ingreso</th><th>Estado</th></tr></thead><tbody>
+    ${lista.map(p=>`<tr onclick="verPaciente('${p.id}')">
+      <td><strong>${p.nombre}</strong></td>
+      <td>${p.diagnostico||'—'}</td>
+      <td>${p.kine||'—'}</td>
+      <td>${fmtFecha(p.fecha)}</td>
+      <td><span class="badge ${p.estado==='Alta'?'badge-verde':'badge-naranja'}">${p.estado||'—'}</span></td>
+    </tr>`).join('')}</tbody></table>`;
+}
+
+// ── PERFIL ──
+function verPaciente(id) {
+  pacienteActual=pacientes.find(p=>p.id===id);
+  if(!pacienteActual) return;
+  const p=pacienteActual;
+  document.getElementById('perfil-topbar-nombre').textContent=p.nombre;
+  document.getElementById('perfil-nombre').textContent=p.nombre;
+  document.getElementById('perfil-avatar').textContent=iniciales(p.nombre);
+  document.getElementById('perfil-subtitulo').textContent=[p.diagnostico,p.region&&p.lateralidad?p.region+' '+p.lateralidad:p.region].filter(Boolean).join(' · ');
+  document.getElementById('perfil-kine').textContent=p.kine||'Sin asignar';
+  
+  const meta=[];
+  if(p.evolucion) meta.push(p.evolucion);
+  if(p.semanaPQ) meta.push(p.semanaPQ);
+  if(p.actividades?.length) meta.push(p.actividades.map(a=>a.deporte).join(', '));
+  document.getElementById('perfil-meta').innerHTML=meta.map(m=>`<span class="meta-tag">${m}</span>`).join('');
+
+  renderFicha();
+  renderSesiones();
+  renderCargas();
+  nav('perfil',null);
+  document.querySelectorAll('.tab-btn')[0].click();
+}
+
+function renderFicha() {
+  const p=pacienteActual;
+  if(!p) return;
+  const ci=p.contraindicaciones?.length?p.contraindicaciones.join(', '):'Ninguna';
+  const acts=p.actividades?.length?p.actividades.map(a=>`${a.deporte}${a.nivel?' ('+a.nivel+')':''}${a.frecuencia?' · '+a.frecuencia:''}`).join('<br>'):'—';
+  const estudios=p.estudios?.length?p.estudios.map(e=>`<a href="${e}" target="_blank" style="color:var(--azul-mid);font-size:12px">${e}</a>`).join('<br>'):'—';
+  const tests=p.tests?.length?p.tests.join(', '):'—';
+
+  document.getElementById('perfil-ficha-content').innerHTML=`
+    <div class="detail-grid">
+      ${db('Datos personales',[['DNI',p.dni],['Nacimiento',fmtFecha(p.nacimiento)],['Sexo',p.sexo],['Tel.',p.tel],['Cobertura',p.cobertura],['Médico',p.medico],['Ocupación',p.ocupacion]])}
+      ${db('Diagnóstico',[['Diagnóstico',p.diagnostico],['Región',p.region],['Lateralidad',p.lateralidad],['Evolución',p.evolucion],['Mecanismo',p.mecanismo]])}
+      <div class="detail-block" style="grid-column:1/-1"><h3>Signos y síntomas</h3><div class="detail-row"><div class="dv">${p.sintomas||'—'}</div></div><div style="margin-top:8px"><div class="dl">Antecedentes</div><div class="dv">${p.antecedentes||'—'}</div></div></div>
+      ${p.cirugia?db('Post-quirúrgico',[['Procedimiento',p.cirugia],['Fecha Cx',fmtFecha(p.fechaCx)],['Cirujano',p.cirujano],['Semana PQ',p.semanaPQ]]):'  '}
+      ${db('Evaluación inicial',[['ROM sano',p.romSano],['ROM afectado',p.romAfec],['Fuerza',p.fuerza],['EVA reposo',p.evaRep+'/10'],['EVA actividad',p.evaAct+'/10']])}
+      <div class="detail-block"><h3>Deporte y actividad</h3><div class="dv">${acts}</div></div>
+      <div class="detail-block"><h3>Tests positivos</h3><div class="dv">${tests}</div><div style="margin-top:8px"><div class="dl">Contraindicaciones</div><div class="dv">${ci}</div></div></div>
+      ${p.estudios?.length?`<div class="detail-block"><h3>Estudios y links</h3>${estudios}</div>`:''}
+      ${db('Plan',[['Objetivos',p.objetivos],['Plan inicial',p.plan],['Observaciones',p.obs]])}
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:1rem">
+      <button class="btn btn-secondary btn-sm" onclick="toggleEstado('${p.id}')">${p.estado==='Alta'?'Reactivar':'Dar de alta'}</button>
+    </div>`;
+}
+
+function db(titulo, campos) {
+  const filas=campos.filter(([,v])=>v).map(([l,v])=>`<div class="detail-row"><div class="dl">${l}</div><div class="dv">${v}</div></div>`).join('');
+  return filas?`<div class="detail-block"><h3>${titulo}</h3>${filas}</div>`:'';
+}
+
+function toggleEstado(id) {
+  const p=pacientes.find(p=>p.id===id);
+  if(!p) return;
+  p.estado=p.estado==='Alta'?'En curso':'Alta';
+  save();
+  toast(p.estado==='Alta'?'Paciente dado de alta':'Paciente reactivado');
+  renderFicha();
+}
+
+// ── SESIONES ──
+function renderSesiones() {
+  if(!pacienteActual) return;
+  const ses=pacienteActual.sesiones||[];
+  if(!ses.length) {
+    document.getElementById('perfil-sesiones-content').innerHTML='<div class="empty"><p>Sin sesiones registradas.</p><div class="empty-action"><button class="btn btn-primary btn-sm" onclick="abrirNuevaSesion()">+ Primera sesión</button></div></div>';
+    return;
+  }
+  document.getElementById('perfil-sesiones-content').innerHTML='<div class="timeline">'+[...ses].reverse().map(s=>`
+    <div class="timeline-item">
+      <span class="eva-badge">Rep ${s.evaRep} / Act ${s.evaAct}</span>
+      <div class="t-fecha">${fmtFecha(s.fecha)}</div>
+      <div class="t-evol">${s.evolucion||'Sesión registrada'}</div>
+      ${s.tecnicas?`<div class="t-det"><strong>Técnicas:</strong> ${s.tecnicas}</div>`:''}
+      ${s.notas?`<div class="t-det" style="margin-top:3px">${s.notas}</div>`:''}
+    </div>`).join('')+'</div>';
+}
+
+function abrirNuevaSesion() {
+  document.getElementById('ses-fecha').value=hoy();
+  ['ses-eva-rep','ses-eva-act'].forEach(id=>document.getElementById(id).value=0);
+  updSesEva('rep'); updSesEva('act');
+  ['ses-tecnicas','ses-notas'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('ses-evolucion').value='';
+  document.getElementById('modal-sesion').classList.add('open');
+}
+
+function guardarSesion() {
+  if(!pacienteActual) return;
+  const ses={id:Date.now().toString(),fecha:document.getElementById('ses-fecha').value,evaRep:document.getElementById('ses-eva-rep').value,evaAct:document.getElementById('ses-eva-act').value,tecnicas:document.getElementById('ses-tecnicas').value,evolucion:document.getElementById('ses-evolucion').value,notas:document.getElementById('ses-notas').value};
+  if(!pacienteActual.sesiones) pacienteActual.sesiones=[];
+  pacienteActual.sesiones.push(ses);
+  const idx=pacientes.findIndex(p=>p.id===pacienteActual.id);
+  if(idx>=0) pacientes[idx]=pacienteActual;
+  save();
+  cerrarModal('modal-sesion');
+  renderSesiones();
+  document.querySelectorAll('.tab-btn')[1].click();
+  toast('Sesión guardada');
+}
+
+// ── CONTROL DE CARGAS ──
+function renderCargas() {
+  if(!pacienteActual) return;
+  const cargas=pacienteActual.cargas||[];
+  document.getElementById('perfil-cargas-content').innerHTML=`
+    <div class="card" style="padding:1rem;margin-bottom:1rem">
+      <div class="card-header" style="padding:0 0 .75rem;border-bottom:1px solid var(--gris-border)">
+        <h2>Control de cargas de entrenamiento</h2>
+        <button class="btn btn-primary btn-sm" onclick="addCarga()">+ Agregar día</button>
+      </div>
+      <div style="overflow-x:auto;margin-top:.75rem">
+        <table class="cargas-table" id="cargas-tabla">
+          <thead><tr><th>Día / Fecha</th><th>Semana</th><th>Estímulo</th><th>Duración (min)</th><th>Esfuerzo (RPE 1–10)</th><th>S-RPE</th><th></th></tr></thead>
+          <tbody id="cargas-body">${cargas.map((c,i)=>cargaRow(c,i)).join('')}</tbody>
+        </table>
+      </div>
+      ${cargas.length?`<div style="margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--gris-border);font-size:12px;color:var(--gris-text)">S-RPE = Duración × Esfuerzo · Carga total semana: <strong style="color:var(--azul-mid)">${calcCargaSemana(cargas)}</strong></div>`:'  '}
+    </div>`;
+}
+
+function cargaRow(c, i) {
+  return`<tr id="carga-${i}">
+    <td><input value="${c.dia||''}" oninput="updCarga(${i},'dia',this.value)" placeholder="Lunes 23/6"></td>
+    <td><input type="number" value="${c.semana||''}" oninput="updCarga(${i},'semana',this.value)" placeholder="1" style="width:50px"></td>
+    <td><select onchange="updCarga(${i},'estimulo',this.value)"><option value="">${c.estimulo||'—'}</option><option>Entrenamiento</option><option>Partido</option><option>Gym</option><option>Kinesiología</option><option>Yoga</option><option>Natación</option><option>Otro</option></select></td>
+    <td><input type="number" value="${c.duracion||''}" oninput="updCarga(${i},'duracion',this.value);calcSRPE(${i})" placeholder="60" style="width:60px"></td>
+    <td><input type="number" min="1" max="10" value="${c.rpe||''}" oninput="updCarga(${i},'rpe',this.value);calcSRPE(${i})" placeholder="6" style="width:50px"></td>
+    <td><span class="srpe-calc" id="srpe-${i}">${c.srpe||'—'}</span></td>
+    <td><button class="btn-icon" onclick="delCarga(${i})"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button></td>
+  </tr>`;
+}
+
+function addCarga() {
+  if(!pacienteActual.cargas) pacienteActual.cargas=[];
+  pacienteActual.cargas.push({dia:'',semana:'',estimulo:'',duracion:'',rpe:'',srpe:''});
+  save();
+  renderCargas();
+}
+
+function updCarga(i,campo,val) {
+  if(!pacienteActual.cargas[i]) return;
+  pacienteActual.cargas[i][campo]=val;
+  save();
+}
+
+function calcSRPE(i) {
+  const c=pacienteActual.cargas[i];
+  const s=parseInt(c.duracion||0)*parseInt(c.rpe||0);
+  c.srpe=s||'—';
+  const el=document.getElementById('srpe-'+i);
+  if(el) el.textContent=s||'—';
+  save();
+}
+
+function delCarga(i) {
+  pacienteActual.cargas.splice(i,1);
+  save();
+  renderCargas();
+}
+
+function calcCargaSemana(cargas) {
+  const tot=cargas.reduce((a,c)=>a+(parseInt(c.srpe)||0),0);
+  return tot||0;
+}
+
+// ── UTILS ──
+function cerrarModal(id) { document.getElementById(id).classList.remove('open'); }
+function toast(msg) { const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2500); }
+function save() { localStorage.setItem('kineba_v2',JSON.stringify(pacientes)); }
+
+// ── INIT ──
+document.getElementById('f-fecha').value=hoy();
+document.getElementById('modal-sesion').addEventListener('click',function(e){if(e.target===this)cerrarModal('modal-sesion');});
+renderInicio();
+</script>
+</body>
+</html>
