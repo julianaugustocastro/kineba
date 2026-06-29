@@ -7,26 +7,16 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --azul:#1a3f6f;
-  --azul-mid:#2563a8;
-  --azul-light:#e8f0fa;
-  --verde:#2e7d52;
-  --verde-light:#e8f5ee;
-  --naranja:#b45309;
-  --naranja-light:#fef3c7;
-  --gris-bg:#f4f5f7;
-  --gris-border:#e2e5eb;
-  --gris-text:#4a5568;
-  --text:#1a202c;
+  --azul:#1a3f6f;--azul-mid:#2563a8;--azul-light:#e8f0fa;--azul-border:#c5d8f0;
+  --verde:#2e7d52;--verde-light:#e8f5ee;
+  --naranja:#b45309;--naranja-light:#fef3c7;
+  --rojo:#b91c1c;--rojo-light:#fef2f2;
+  --gris-bg:#f4f5f7;--gris-border:#e2e5eb;--gris-text:#4a5568;--text:#1a202c;
   --radius:8px;
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--gris-bg);color:var(--text);font-size:14px}
-
-/* LAYOUT */
 .sidebar{position:fixed;top:0;left:0;width:220px;height:100vh;background:var(--azul);display:flex;flex-direction:column;z-index:100}
 .main{margin-left:220px;min-height:100vh;padding-bottom:2rem}
-
-/* SIDEBAR */
 .sb-logo{padding:1.25rem 1rem;border-bottom:1px solid rgba(255,255,255,.12);display:flex;align-items:center;gap:10px}
 .sb-logo-icon{width:40px;height:40px;background:rgba(255,255,255,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
 .sb-logo-text .n{color:#fff;font-size:14px;font-weight:700;letter-spacing:.5px}
@@ -38,52 +28,34 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 .sb-btn.active{background:rgba(255,255,255,.18);color:#fff;font-weight:500}
 .sb-btn svg{width:16px;height:16px;flex-shrink:0;opacity:.8}
 .sb-footer{padding:1rem;border-top:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.35);font-size:11px}
-
-/* MOBILE NAV */
 .mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--azul);z-index:200;border-top:1px solid rgba(255,255,255,.1)}
 .mob-nav-inner{display:flex}
 .mob-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:transparent;border:none;color:rgba(255,255,255,.55);padding:8px 4px;cursor:pointer;font-size:10px;font-family:inherit;transition:.15s}
 .mob-btn svg{width:20px;height:20px}
 .mob-btn.active{color:#fff}
-
-/* TOPBAR */
 .topbar{background:#fff;border-bottom:1px solid var(--gris-border);padding:.875rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;position:sticky;top:0;z-index:50}
 .topbar h1{font-size:15px;font-weight:600}
 .topbar-actions{display:flex;gap:8px;align-items:center}
-
-/* CONTENT */
 .content{padding:1.5rem}
-
-/* CARDS STATS */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.5rem}
 .stat{background:#fff;border-radius:var(--radius);border:1px solid var(--gris-border);padding:1rem 1.1rem}
 .stat .num{font-size:28px;font-weight:700;color:var(--azul-mid)}
 .stat .lbl{font-size:11px;color:var(--gris-text);margin-top:3px}
 .stat .sub{font-size:10px;color:var(--gris-text);margin-top:6px;padding-top:6px;border-top:1px solid var(--gris-border)}
-
-/* BANNER */
 .banner{background:linear-gradient(135deg,var(--azul),var(--azul-mid));border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;color:#fff}
 .banner h2{font-size:17px;font-weight:600}
 .banner p{font-size:12px;opacity:.75;margin-top:3px}
-
-/* CARD */
 .card{background:#fff;border-radius:var(--radius);border:1px solid var(--gris-border);overflow:hidden}
 .card-header{padding:.875rem 1.25rem;border-bottom:1px solid var(--gris-border);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .card-header h2{font-size:13px;font-weight:600}
-
-/* BOTONES */
 .btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:.15s}
 .btn-primary{background:var(--azul-mid);color:#fff}
 .btn-primary:hover{background:var(--azul)}
 .btn-secondary{background:#fff;color:var(--text);border:1px solid var(--gris-border)}
 .btn-secondary:hover{background:#f7f8fa}
 .btn-sm{padding:5px 10px;font-size:12px}
-
-/* BÚSQUEDA */
 .search{padding:6px 10px;border:1px solid var(--gris-border);border-radius:6px;font-size:13px;outline:none;font-family:inherit;color:var(--text);background:#fff;min-width:0;flex:1;max-width:220px}
 .search:focus{border-color:var(--azul-mid)}
-
-/* TABLA */
 table{width:100%;border-collapse:collapse}
 th{padding:8px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--gris-text);text-transform:uppercase;letter-spacing:.5px;background:#fafbfc;border-bottom:1px solid var(--gris-border)}
 td{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--gris-border)}
@@ -94,17 +66,16 @@ tbody tr:hover td{background:#fafbfc}
 .badge-verde{background:var(--verde-light);color:var(--verde)}
 .badge-naranja{background:var(--naranja-light);color:var(--naranja)}
 .badge-azul{background:var(--azul-light);color:var(--azul-mid)}
-
-/* EMPTY */
+.badge-rojo{background:var(--rojo-light);color:var(--rojo)}
 .empty{text-align:center;padding:2.5rem 1rem;color:var(--gris-text)}
 .empty p{font-size:13px;margin-bottom:.75rem}
-
-/* FORM */
 .form-card{background:#fff;border-radius:var(--radius);border:1px solid var(--gris-border);padding:1.5rem}
 .fsec{margin-bottom:1.5rem}
-.fsec-title{font-size:10px;font-weight:700;color:var(--azul-mid);text-transform:uppercase;letter-spacing:.7px;padding-bottom:.4rem;border-bottom:1.5px solid var(--azul-light);margin-bottom:.875rem}
+.fsec-title{font-size:10px;font-weight:700;color:var(--azul-mid);text-transform:uppercase;letter-spacing:.7px;padding-bottom:.4rem;border-bottom:1.5px solid var(--azul-light);margin-bottom:.875rem;display:flex;align-items:center;gap:6px}
+.fsec-title .step{background:var(--azul-mid);color:#fff;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
 .fgrid{display:grid;gap:12px}
 .col2{grid-template-columns:1fr 1fr}
+.col3{grid-template-columns:1fr 1fr 1fr}
 .col1{grid-template-columns:1fr}
 .field{display:flex;flex-direction:column;gap:3px}
 .field label{font-size:10px;font-weight:600;color:var(--gris-text);text-transform:uppercase;letter-spacing:.4px}
@@ -112,6 +83,7 @@ tbody tr:hover td{background:#fafbfc}
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--azul-mid);box-shadow:0 0 0 2px var(--azul-light)}
 .field input[readonly]{background:#f8f9fa;color:var(--azul-mid);font-weight:600}
 .field textarea{resize:vertical;min-height:70px;line-height:1.5}
+.field-hint{font-size:10px;color:var(--gris-text);margin-top:2px;font-style:italic}
 .check-group{display:flex;flex-wrap:wrap;gap:7px}
 .check-opt{display:flex;align-items:center;gap:5px;padding:4px 10px;border:1px solid var(--gris-border);border-radius:6px;cursor:pointer;font-size:12px;transition:.15s}
 .check-opt:hover{border-color:var(--azul-mid);background:var(--azul-light)}
@@ -120,30 +92,30 @@ tbody tr:hover td{background:#fafbfc}
 .radio-opt{display:flex;align-items:center;gap:5px;padding:4px 10px;border:1px solid var(--gris-border);border-radius:6px;cursor:pointer;font-size:12px;transition:.15s}
 .radio-opt:hover{border-color:var(--azul-mid);background:var(--azul-light)}
 .radio-opt input{accent-color:var(--azul-mid)}
-
-/* EVA */
 .eva-box{background:var(--gris-bg);border-radius:var(--radius);padding:.875rem 1rem}
 .eva-label{font-size:10px;font-weight:600;color:var(--gris-text);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
 .eva-slider{width:100%;accent-color:var(--azul-mid);margin:4px 0}
 .eva-nums{display:flex;justify-content:space-between;font-size:10px;color:var(--gris-text)}
 .eva-val{font-size:26px;font-weight:700;color:var(--azul-mid);text-align:center;margin-top:2px}
 .eva-desc-txt{font-size:10px;color:var(--gris-text);text-align:center}
-
-/* ACTIVIDADES */
-.act-list{display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
-.act-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;align-items:end;background:var(--gris-bg);padding:8px;border-radius:6px}
-.btn-del{background:transparent;border:none;cursor:pointer;color:#b91c1c;padding:6px;border-radius:4px;display:flex;align-items:center;transition:.15s}
-.btn-del:hover{background:#fef2f2}
-.btn-add{width:100%;display:flex;align-items:center;justify-content:center;gap:5px;background:transparent;border:1px dashed var(--azul-light);color:var(--azul-mid);padding:7px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit;transition:.15s}
-.btn-add:hover{background:var(--azul-light)}
-
-/* LINKS */
-.link-list{display:flex;flex-direction:column;gap:6px;margin-bottom:6px}
-.link-row{display:flex;gap:6px;align-items:center}
-.link-row input{flex:1;padding:6px 9px;border:1px solid var(--gris-border);border-radius:6px;font-size:12px;outline:none;font-family:inherit}
-.link-row input:focus{border-color:var(--azul-mid)}
-.btn-link{background:var(--azul-light);color:var(--azul-mid);border:none;border-radius:6px;padding:6px 9px;font-size:11px;cursor:pointer;font-family:inherit;white-space:nowrap}
-
+/* CLASIFICACION OSIICS */
+.osiics-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.osiics-block{background:var(--gris-bg);border-radius:6px;padding:.75rem}
+.osiics-block label{font-size:10px;font-weight:600;color:var(--gris-text);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:4px}
+.osiics-block select{width:100%;padding:6px 8px;border:1px solid var(--gris-border);border-radius:6px;font-size:12px;color:var(--text);background:#fff;font-family:inherit;outline:none}
+.osiics-block select:focus{border-color:var(--azul-mid)}
+.diag-resultado{background:var(--azul-light);border:1px solid var(--azul-border);border-radius:6px;padding:.75rem 1rem;margin-top:10px;font-size:13px;color:var(--azul);font-weight:500;display:none}
+.diag-resultado.visible{display:block}
+/* EVALUACIONES SUGERIDAS */
+.eval-sugeridas{background:#fff;border:1px solid var(--azul-border);border-radius:8px;padding:1rem;margin-top:10px}
+.eval-sugeridas h4{font-size:11px;font-weight:700;color:var(--azul-mid);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem}
+.eval-categoria{margin-bottom:.75rem}
+.eval-categoria h5{font-size:10px;font-weight:600;color:var(--gris-text);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+.eval-items{display:flex;flex-wrap:wrap;gap:6px}
+.eval-chip{display:flex;align-items:center;gap:5px;padding:4px 10px;border:1px solid var(--gris-border);border-radius:20px;font-size:11px;cursor:pointer;transition:.15s;background:#fff}
+.eval-chip:hover{border-color:var(--azul-mid);background:var(--azul-light)}
+.eval-chip input{accent-color:var(--azul-mid);width:12px;height:12px}
+.eval-chip.checked{background:var(--azul-light);border-color:var(--azul-mid);font-weight:500}
 /* TESTS */
 .test-item{border:1px solid var(--gris-border);border-radius:6px;overflow:hidden;margin-bottom:6px}
 .test-head{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#fafbfc;cursor:default}
@@ -153,35 +125,57 @@ tbody tr:hover td{background:#fafbfc}
 .test-info-btn:hover{background:var(--gris-border)}
 .test-body{display:none;padding:8px 12px;font-size:12px;color:var(--gris-text);line-height:1.6;border-top:1px solid var(--gris-border);background:#fff}
 .test-body.open{display:block}
-
+/* SEVERIDAD */
+.severidad-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+.sev-opt{border:2px solid var(--gris-border);border-radius:8px;padding:.6rem .5rem;text-align:center;cursor:pointer;transition:.15s}
+.sev-opt:hover{border-color:var(--azul-mid)}
+.sev-opt.selected-min{border-color:#16a34a;background:#f0fdf4}
+.sev-opt.selected-lev{border-color:#ca8a04;background:#fefce8}
+.sev-opt.selected-mod{border-color:#ea580c;background:#fff7ed}
+.sev-opt.selected-sev{border-color:#dc2626;background:#fef2f2}
+.sev-dot{width:10px;height:10px;border-radius:50%;margin:0 auto 4px}
+.sev-nombre{font-size:11px;font-weight:600}
+.sev-dias{font-size:10px;color:var(--gris-text)}
+/* ACTIVIDADES */
+.act-list{display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
+.act-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;align-items:end;background:var(--gris-bg);padding:8px;border-radius:6px}
+.btn-del{background:transparent;border:none;cursor:pointer;color:#b91c1c;padding:6px;border-radius:4px;display:flex;align-items:center;transition:.15s}
+.btn-del:hover{background:var(--rojo-light)}
+.btn-add{width:100%;display:flex;align-items:center;justify-content:center;gap:5px;background:transparent;border:1px dashed var(--azul-border);color:var(--azul-mid);padding:7px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit;transition:.15s}
+.btn-add:hover{background:var(--azul-light)}
+/* LINKS */
+.link-list{display:flex;flex-direction:column;gap:6px;margin-bottom:6px}
+.link-row{display:flex;gap:6px;align-items:center}
+.link-row input{flex:1;padding:6px 9px;border:1px solid var(--gris-border);border-radius:6px;font-size:12px;outline:none;font-family:inherit}
+.link-row input:focus{border-color:var(--azul-mid)}
+.btn-link{background:var(--azul-light);color:var(--azul-mid);border:none;border-radius:6px;padding:6px 9px;font-size:11px;cursor:pointer;font-family:inherit;white-space:nowrap}
 /* PERFIL */
 .perfil-top{background:#fff;border-radius:var(--radius);border:1px solid var(--gris-border);padding:1.25rem;margin-bottom:1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
 .avatar{width:48px;height:48px;border-radius:50%;background:var(--azul-light);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:var(--azul-mid);flex-shrink:0}
 .perfil-info h2{font-size:16px;font-weight:700}
 .perfil-info p{font-size:12px;color:var(--gris-text);margin-top:2px}
+.semaforo{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.sem-verde{background:var(--verde-light);color:var(--verde)}
+.sem-naranja{background:var(--naranja-light);color:var(--naranja)}
+.sem-rojo{background:var(--rojo-light);color:var(--rojo)}
+.sem-gris{background:#f3f4f6;color:#6b7280}
 .perfil-tabs{display:flex;gap:2px;background:#fff;border:1px solid var(--gris-border);border-radius:8px;padding:4px;margin-bottom:1rem;overflow-x:auto}
 .tab-btn{padding:6px 14px;border-radius:6px;border:none;background:transparent;font-size:12px;font-weight:500;cursor:pointer;color:var(--gris-text);transition:.15s;white-space:nowrap;font-family:inherit}
 .tab-btn.active{background:var(--azul-mid);color:#fff}
 .tab-panel{display:none}
 .tab-panel.active{display:block}
-
-/* DETAIL */
 .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .detail-block{background:#fff;border:1px solid var(--gris-border);border-radius:var(--radius);padding:1rem 1.1rem}
 .detail-block h3{font-size:10px;font-weight:700;color:var(--azul-mid);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.6rem}
 .drow{margin-bottom:6px}
 .dl{font-size:10px;color:var(--gris-text);font-weight:600;text-transform:uppercase;letter-spacing:.3px}
 .dv{font-size:12px;color:var(--text);margin-top:1px;line-height:1.4}
-
-/* TIMELINE */
 .timeline{display:flex;flex-direction:column;gap:10px}
 .tl-item{background:#fff;border:1px solid var(--gris-border);border-radius:var(--radius);padding:1rem 1.1rem;border-left:3px solid var(--azul-mid);position:relative}
 .tl-fecha{font-size:10px;font-weight:600;color:var(--gris-text);text-transform:uppercase;letter-spacing:.4px}
 .tl-evol{font-size:13px;font-weight:500;margin:3px 0}
 .tl-det{font-size:12px;color:var(--gris-text);line-height:1.5}
 .tl-eva{position:absolute;top:1rem;right:1rem;background:var(--azul-light);color:var(--azul-mid);font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px}
-
-/* CARGAS */
 .cargas-wrap{overflow-x:auto}
 .ctable{width:100%;border-collapse:collapse;font-size:12px;min-width:560px}
 .ctable th{padding:7px 10px;background:var(--azul-light);color:var(--azul-mid);text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.4px;font-weight:600}
@@ -189,29 +183,21 @@ tbody tr:hover td{background:#fafbfc}
 .ctable input,.ctable select{width:100%;border:none;background:transparent;font-size:12px;outline:none;color:var(--text);font-family:inherit;padding:2px 0}
 .ctable tr:hover td{background:#fafbfc}
 .srpe{font-weight:700;color:var(--azul-mid)}
-
-/* MODAL */
 .backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:300;align-items:center;justify-content:center;padding:1rem}
 .backdrop.open{display:flex}
 .modal{background:#fff;border-radius:12px;padding:1.5rem;width:100%;max-width:500px;max-height:90vh;overflow-y:auto}
 .modal h2{font-size:15px;font-weight:600;margin-bottom:1rem}
 .modal-footer{display:flex;gap:8px;justify-content:flex-end;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--gris-border)}
-
-/* TOAST */
 .toast{position:fixed;bottom:5rem;right:1rem;background:var(--verde);color:#fff;padding:.65rem 1.1rem;border-radius:8px;font-size:13px;font-weight:500;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;box-shadow:0 4px 12px rgba(0,0,0,.15)}
 .toast.show{opacity:1}
-
-/* PAGES */
 .page{display:none}
 .page.active{display:block}
-
-/* RESPONSIVE */
 @media(max-width:768px){
   .sidebar{display:none}
   .main{margin-left:0;padding-bottom:70px}
   .mob-nav{display:block}
   .stats{grid-template-columns:1fr 1fr}
-  .col2{grid-template-columns:1fr}
+  .col2,.col3,.osiics-grid,.severidad-grid{grid-template-columns:1fr}
   .detail-grid{grid-template-columns:1fr}
   .act-row{grid-template-columns:1fr 1fr}
   .act-row .field:last-of-type{grid-column:1/-1}
@@ -221,47 +207,42 @@ tbody tr:hover td{background:#fafbfc}
 </head>
 <body>
 
-<!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sb-logo">
     <div class="sb-logo-icon">🏃</div>
-    <div class="sb-logo-text">
-      <div class="n">KINEBA</div>
-      <div class="s">Rehabilitación</div>
-    </div>
+    <div class="sb-logo-text"><div class="n">KINEBA</div><div class="s">Rehabilitación</div></div>
   </div>
   <nav class="sb-nav">
     <div class="sb-section">Principal</div>
     <button class="sb-btn active" id="sb-inicio" onclick="showPage('inicio')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      Inicio
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Inicio
     </button>
     <button class="sb-btn" id="sb-pacientes" onclick="showPage('pacientes')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      Pacientes
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Pacientes
     </button>
     <button class="sb-btn" id="sb-ficha" onclick="showPage('ficha')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-      Nueva ficha
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>Nueva ficha
+    </button>
+    <button class="sb-btn" id="sb-lesiones" onclick="showPage('lesiones')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Registro de lesiones
     </button>
   </nav>
   <div class="sb-footer">Julián &amp; Juampi · v2.0</div>
 </aside>
 
-<!-- MOBILE NAV -->
 <nav class="mob-nav">
   <div class="mob-nav-inner">
     <button class="mob-btn active" id="mob-inicio" onclick="showPage('inicio')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      Inicio
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Inicio
     </button>
     <button class="mob-btn" id="mob-pacientes" onclick="showPage('pacientes')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      Pacientes
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Pacientes
     </button>
     <button class="mob-btn" id="mob-ficha" onclick="showPage('ficha')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-      Ficha
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Ficha
+    </button>
+    <button class="mob-btn" id="mob-lesiones" onclick="showPage('lesiones')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Lesiones
     </button>
   </div>
 </nav>
@@ -272,16 +253,10 @@ tbody tr:hover td{background:#fafbfc}
 <div class="page active" id="page-inicio">
   <div class="topbar"><h1>Inicio</h1></div>
   <div class="content">
-    <div class="banner">
-      <h2>Kineba Rehabilitación</h2>
-      <p>Sistema de gestión clínica · Julián &amp; Juampi</p>
-    </div>
+    <div class="banner"><h2>Kineba Rehabilitación</h2><p>Sistema de gestión clínica · Juan Pablo &amp; Julián</p></div>
     <div class="stats" id="stats"></div>
     <div class="card">
-      <div class="card-header">
-        <h2>Últimos pacientes</h2>
-        <button class="btn btn-primary btn-sm" onclick="showPage('ficha')">+ Nueva ficha</button>
-      </div>
+      <div class="card-header"><h2>Últimos pacientes</h2><button class="btn btn-primary btn-sm" onclick="showPage('ficha')">+ Nueva ficha</button></div>
       <div id="tabla-inicio"></div>
     </div>
   </div>
@@ -296,9 +271,7 @@ tbody tr:hover td{background:#fafbfc}
       <button class="btn btn-primary btn-sm" onclick="showPage('ficha')">+ Nuevo</button>
     </div>
   </div>
-  <div class="content">
-    <div class="card"><div id="tabla-pacientes"></div></div>
-  </div>
+  <div class="content"><div class="card"><div id="tabla-pacientes"></div></div></div>
 </div>
 
 <!-- PERFIL -->
@@ -313,11 +286,11 @@ tbody tr:hover td{background:#fafbfc}
   <div class="content">
     <div class="perfil-top">
       <div class="avatar" id="perfil-avatar">--</div>
-      <div class="perfil-info">
-        <h2 id="perfil-nombre">—</h2>
-        <p id="perfil-sub">—</p>
+      <div class="perfil-info"><h2 id="perfil-nombre">—</h2><p id="perfil-sub">—</p></div>
+      <div style="margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:5px">
+        <span class="badge badge-azul" id="perfil-kine"></span>
+        <span id="perfil-semaforo"></span>
       </div>
-      <div style="margin-left:auto"><span class="badge badge-azul" id="perfil-kine"></span></div>
     </div>
     <div class="perfil-tabs">
       <button class="tab-btn active" onclick="showTab('ficha-perfil',this)">Ficha clínica</button>
@@ -342,8 +315,9 @@ tbody tr:hover td{background:#fafbfc}
   <div class="content">
     <div class="form-card">
 
+      <!-- 1. DATOS -->
       <div class="fsec">
-        <div class="fsec-title">Datos del paciente</div>
+        <div class="fsec-title"><span class="step">1</span>Datos del paciente</div>
         <div class="fgrid col2">
           <div class="field"><label>Nombre y apellido *</label><input type="text" id="f-nombre" placeholder="Apellido, Nombre"></div>
           <div class="field"><label>Fecha de ingreso</label><input type="date" id="f-fecha"></div>
@@ -358,60 +332,139 @@ tbody tr:hover td{background:#fafbfc}
         </div>
       </div>
 
+      <!-- 2. DEPORTE -->
       <div class="fsec">
-        <div class="fsec-title">Deporte y actividad física</div>
+        <div class="fsec-title"><span class="step">2</span>Deporte y actividad física</div>
         <div id="act-list" class="act-list"></div>
         <button class="btn-add" onclick="addAct()">+ Agregar actividad</button>
       </div>
 
+      <!-- 3. CLASIFICACION OSIICS -->
       <div class="fsec">
-        <div class="fsec-title">Diagnóstico</div>
-        <div class="fgrid col2">
-          <div class="field"><label>Diagnóstico *</label><input type="text" id="f-diag" placeholder="Esguince LLE grado II tobillo derecho"></div>
-          <div class="field"><label>Región afectada</label>
-            <select id="f-region" onchange="cargarTests(this.value)">
-              <option value="">—</option>
-              <option>Columna cervical</option><option>Columna lumbar</option>
-              <option>Hombro</option><option>Codo</option><option>Muñeca / mano</option>
-              <option>Cadera</option><option>Rodilla</option><option>Tobillo / pie</option>
-              <option>Muslo</option><option>Pierna</option><option>Otro</option>
+        <div class="fsec-title"><span class="step">3</span>Clasificación del evento lesional <span style="font-size:9px;font-weight:400;color:var(--gris-text);margin-left:4px">OSIICS 2020</span></div>
+        <div class="osiics-grid">
+          <div class="osiics-block">
+            <label>Región corporal</label>
+            <select id="f-region" onchange="onRegionChange()">
+              <option value="">— Seleccionar —</option>
+              <option>Cabeza/Cráneo</option><option>Cara</option><option>Cuello</option>
+              <option>Hombro/Clavícula</option><option>Brazo (húmero)</option><option>Codo</option>
+              <option>Antebrazo</option><option>Muñeca</option><option>Mano/Dedos</option>
+              <option>Tórax</option><option>Abdomen</option><option>Columna Lumbar/Sacra</option>
+              <option>Cadera/Ingle</option><option>Muslo</option><option>Rodilla</option>
+              <option>Pierna (tibia/fíbula)</option><option>Tobillo</option><option>Pie/Dedos</option>
             </select>
           </div>
+          <div class="osiics-block">
+            <label>Tipo de tejido</label>
+            <select id="f-tejido" onchange="onTejidoChange()">
+              <option value="">— Seleccionar —</option>
+              <option>Músculo</option><option>Tendón</option><option>Ligamento</option>
+              <option>Hueso</option><option>Cartílago</option><option>Bursa</option>
+              <option>Nervio</option><option>Piel/Fascia</option><option>Articulación</option>
+            </select>
+          </div>
+          <div class="osiics-block">
+            <label>Patología</label>
+            <select id="f-patologia">
+              <option value="">— Seleccionar tejido primero —</option>
+            </select>
+          </div>
+        </div>
+        <div class="osiics-grid" style="margin-top:10px">
+          <div class="osiics-block">
+            <label>Lateralidad</label>
+            <select id="f-lado"><option value="">—</option><option>Derecho</option><option>Izquierdo</option><option>Bilateral</option></select>
+          </div>
+          <div class="osiics-block">
+            <label>Contexto lesional</label>
+            <select id="f-contexto"><option value="">—</option><option>Partido / Competencia</option><option>Entrenamiento</option><option>Actividad recreativa</option><option>Vida cotidiana</option><option>Sobreuso / crónico</option></select>
+          </div>
+          <div class="osiics-block">
+            <label>Mecanismo de lesión</label>
+            <select id="f-mecanismo"><option value="">—</option><option>Contacto directo</option><option>Sin contacto</option><option>Caída</option><option>Torsión</option><option>Hiperextensión</option><option>Impacto</option><option>Sobreuso</option><option>Otro</option></select>
+          </div>
+        </div>
+        <div class="diag-resultado" id="diag-resultado"></div>
+        <div class="fgrid col1" style="margin-top:10px">
+          <div class="field"><label>Diagnóstico clínico completo</label><input type="text" id="f-diag" placeholder="Se completa automáticamente o podés escribirlo manualmente"></div>
+          <div class="field"><label>Descripción del evento lesional</label><input type="text" id="f-desc-evento" placeholder="Ej: Caída con pie en inversión durante partido. Sintió un chasquido..."></div>
           <div class="field"><label>Tipo de evolución</label>
             <select id="f-evol"><option value="">—</option><option>Aguda (0–7 días)</option><option>Subaguda (1–6 semanas)</option><option>Crónica (+6 semanas)</option><option>Post-quirúrgica</option><option>Recidiva</option></select>
           </div>
-          <div class="field"><label>Lateralidad</label>
-            <div class="radio-group">
-              <label class="radio-opt"><input type="radio" name="lat" value="Derecho"> Derecho</label>
-              <label class="radio-opt"><input type="radio" name="lat" value="Izquierdo"> Izquierdo</label>
-              <label class="radio-opt"><input type="radio" name="lat" value="Bilateral"> Bilateral</label>
-            </div>
-          </div>
-        </div>
-        <div class="fgrid col1" style="margin-top:12px">
-          <div class="field"><label>Mecanismo lesional</label><input type="text" id="f-mec" placeholder="Caída con pie en inversión durante partido..."></div>
-          <div class="field"><label>Signos y síntomas</label><textarea id="f-sint" placeholder="Dolor, edema, limitación de movimiento..."></textarea></div>
-          <div class="field"><label>Antecedentes de lesión</label><input type="text" id="f-ant" placeholder="Esguince 2021 / Ninguno..."></div>
         </div>
         <div style="margin-top:12px">
-          <div class="fsec-title" style="margin-bottom:8px">Estudios complementarios y links</div>
-          <div id="link-list" class="link-list"></div>
-          <button class="btn-add" onclick="addLink()">+ Agregar estudio o link</button>
+          <div style="font-size:10px;font-weight:600;color:var(--gris-text);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Severidad estimada (Fuller 2006)</div>
+          <div class="severidad-grid">
+            <div class="sev-opt" id="sev-min" onclick="selSev('min')"><div class="sev-dot" style="background:#16a34a"></div><div class="sev-nombre" style="color:#16a34a">Mínima</div><div class="sev-dias">1–3 días</div></div>
+            <div class="sev-opt" id="sev-lev" onclick="selSev('lev')"><div class="sev-dot" style="background:#ca8a04"></div><div class="sev-nombre" style="color:#ca8a04">Leve</div><div class="sev-dias">4–7 días</div></div>
+            <div class="sev-opt" id="sev-mod" onclick="selSev('mod')"><div class="sev-dot" style="background:#ea580c"></div><div class="sev-nombre" style="color:#ea580c">Moderada</div><div class="sev-dias">8–28 días</div></div>
+            <div class="sev-opt" id="sev-sev" onclick="selSev('sev')"><div class="sev-dot" style="background:#dc2626"></div><div class="sev-nombre" style="color:#dc2626">Severa</div><div class="sev-dias">&gt;28 días</div></div>
+          </div>
+        </div>
+        <div style="margin-top:10px">
+          <div id="estudios-link-list" class="link-list"></div>
+          <button class="btn-add" onclick="addLink('estudios-link-list','estudios-link')">+ Agregar estudio o link (RX, RMN, ecografía...)</button>
         </div>
       </div>
 
+      <!-- 4. ANAMNESIS -->
       <div class="fsec">
-        <div class="fsec-title">Post-quirúrgico (si aplica)</div>
+        <div class="fsec-title"><span class="step">4</span>Anamnesis</div>
+        <div class="fgrid col1">
+          <div class="field"><label>Motivo de consulta (en palabras del paciente)</label><textarea id="f-motivo" placeholder="¿Qué te pasó? ¿Cuándo? ¿Cómo fue?..."></textarea></div>
+          <div class="field"><label>Síntomas principales</label><textarea id="f-sint" placeholder="Dolor, edema, limitación de movimiento, inestabilidad, parestesias..."></textarea></div>
+          <div class="field"><label>Antecedentes de lesión</label><input type="text" id="f-ant" placeholder="Esguince homolateral 2021 / Cirugía previa / Ninguno..."></div>
+          <div class="field"><label>Antecedentes médicos relevantes</label><input type="text" id="f-ant-med" placeholder="HTA, DBT, osteoporosis, medicación actual..."></div>
+        </div>
+      </div>
+
+      <!-- 5. POST-QX -->
+      <div class="fsec">
+        <div class="fsec-title"><span class="step">5</span>Post-quirúrgico <span style="font-size:9px;font-weight:400;color:var(--gris-text);margin-left:4px">(completar si aplica)</span></div>
         <div class="fgrid col2">
-          <div class="field"><label>Procedimiento</label><input type="text" id="f-cx" placeholder="Reconstrucción LCA / Meniscectomía..."></div>
+          <div class="field"><label>Procedimiento quirúrgico</label><input type="text" id="f-cx" placeholder="Reconstrucción LCA con ST-G / Meniscectomía parcial..."></div>
           <div class="field"><label>Fecha de cirugía</label><input type="date" id="f-fecha-cx" oninput="calcPQ()"></div>
           <div class="field"><label>Cirujano</label><input type="text" id="f-ciru" placeholder="Dr. García"></div>
           <div class="field"><label>Semana post-qx <small style="font-size:10px;color:var(--azul-mid)">(automática)</small></label><input type="text" id="f-spq" readonly placeholder="Se calcula desde la fecha de cirugía"></div>
         </div>
       </div>
 
+      <!-- 6. EVALUACION FUNCIONAL -->
       <div class="fsec">
-        <div class="fsec-title">Contraindicaciones</div>
+        <div class="fsec-title"><span class="step">6</span>Evaluación funcional</div>
+        <div id="eval-sugeridas-container"></div>
+        <div class="fgrid col2" style="margin-top:12px">
+          <div class="field"><label>ROM miembro sano</label><input type="text" id="f-roms" placeholder="Flex 0–130° / Ext completa / Abd 0–180°..."></div>
+          <div class="field"><label>ROM miembro afectado</label><input type="text" id="f-roma" placeholder="Flex 0–90° dolorosa / Limitado en rotación ext..."></div>
+          <div class="field"><label>Fuerza muscular</label><input type="text" id="f-fuerza" placeholder="Cuádriceps 4/5 / Isquiotibiales 3/5 (escala Daniels)..."></div>
+          <div class="field"><label>Prueba de equilibrio</label><input type="text" id="f-equilibrio" placeholder="Star Balance / BESS — resultado y comparación bilateral..."></div>
+        </div>
+        <div class="fgrid col2" style="margin-top:12px">
+          <div class="eva-box">
+            <div class="eva-label">EVA — Reposo</div>
+            <input type="range" class="eva-slider" id="f-eva-rep" min="0" max="10" step="1" value="0" oninput="updEva('rep')">
+            <div class="eva-nums"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div>
+            <div class="eva-val" id="eva-rep-v">0</div>
+            <div class="eva-desc-txt" id="eva-rep-d">Sin dolor</div>
+          </div>
+          <div class="eva-box">
+            <div class="eva-label">EVA — Actividad</div>
+            <input type="range" class="eva-slider" id="f-eva-act" min="0" max="10" step="1" value="0" oninput="updEva('act')">
+            <div class="eva-nums"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div>
+            <div class="eva-val" id="eva-act-v">0</div>
+            <div class="eva-desc-txt" id="eva-act-d">Sin dolor</div>
+          </div>
+        </div>
+        <div style="margin-top:14px">
+          <div style="font-size:10px;font-weight:600;color:var(--gris-text);text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Tests funcionales</div>
+          <div id="tests-cont"><p style="font-size:12px;color:var(--gris-text)">Seleccioná la región corporal para ver los tests sugeridos.</p></div>
+        </div>
+      </div>
+
+      <!-- 7. CONTRAINDICACIONES -->
+      <div class="fsec">
+        <div class="fsec-title"><span class="step">7</span>Contraindicaciones</div>
         <div class="check-group">
           <label class="check-opt"><input type="checkbox" value="Calor"> Ca (calor)</label>
           <label class="check-opt"><input type="checkbox" value="Marcapasos"> Marcapasos</label>
@@ -425,40 +478,13 @@ tbody tr:hover td{background:#fafbfc}
         </div>
       </div>
 
+      <!-- 8. PLAN -->
       <div class="fsec">
-        <div class="fsec-title">Evaluación funcional</div>
-        <div class="fgrid col2">
-          <div class="field"><label>ROM miembro sano</label><input type="text" id="f-roms" placeholder="Flex 0–130° / Ext completa..."></div>
-          <div class="field"><label>ROM miembro afectado</label><input type="text" id="f-roma" placeholder="Flex 0–90° dolorosa..."></div>
-          <div class="field"><label>Fuerza muscular</label><input type="text" id="f-fuerza" placeholder="Cuádriceps 4/5 / Isquio 3/5..."></div>
-        </div>
-        <div class="fgrid col2" style="margin-top:12px">
-          <div class="eva-box">
-            <div class="eva-label">EVA Reposo</div>
-            <input type="range" class="eva-slider" id="f-eva-rep" min="0" max="10" step="1" value="0" oninput="updEva('rep')">
-            <div class="eva-nums"><span>0</span><span>5</span><span>10</span></div>
-            <div class="eva-val" id="eva-rep-v">0</div>
-            <div class="eva-desc-txt" id="eva-rep-d">Sin dolor</div>
-          </div>
-          <div class="eva-box">
-            <div class="eva-label">EVA Actividad</div>
-            <input type="range" class="eva-slider" id="f-eva-act" min="0" max="10" step="1" value="0" oninput="updEva('act')">
-            <div class="eva-nums"><span>0</span><span>5</span><span>10</span></div>
-            <div class="eva-val" id="eva-act-v">0</div>
-            <div class="eva-desc-txt" id="eva-act-d">Sin dolor</div>
-          </div>
-        </div>
-        <div style="margin-top:12px">
-          <div class="fsec-title" style="margin-bottom:8px">Tests funcionales</div>
-          <div id="tests-cont"><p style="font-size:12px;color:var(--gris-text)">Seleccioná la región afectada para ver los tests.</p></div>
-        </div>
-      </div>
-
-      <div class="fsec">
-        <div class="fsec-title">Plan y objetivos</div>
+        <div class="fsec-title"><span class="step">8</span>Plan y objetivos</div>
         <div class="fgrid col1">
-          <div class="field"><label>Objetivos</label><textarea id="f-obj" placeholder="Reducir dolor / Recuperar ROM / Retorno al deporte..."></textarea></div>
-          <div class="field"><label>Plan inicial</label><textarea id="f-plan" placeholder="Fase 1: analgesia... Fase 2: fortalecimiento..."></textarea></div>
+          <div class="field"><label>Objetivos de tratamiento</label><textarea id="f-obj" placeholder="Fase 1: Reducir dolor e inflamación / Fase 2: Recuperar ROM / Fase 3: Fortalecimiento / Fase 4: Retorno al deporte..."></textarea></div>
+          <div class="field"><label>Plan inicial</label><textarea id="f-plan" placeholder="Fisioterapia analgésica, kinesioterapia activa progresiva, trabajo propioceptivo..."></textarea></div>
+          <div class="field"><label>Días de baja estimados</label><input type="number" id="f-dias-baja" placeholder="Ej: 21" min="0"><div class="field-hint">Referencia: Mínima 1-3d · Leve 4-7d · Moderada 8-28d · Severa &gt;28d</div></div>
           <div class="field"><label>Observaciones</label><textarea id="f-obs" placeholder="Notas adicionales..."></textarea></div>
         </div>
       </div>
@@ -467,6 +493,18 @@ tbody tr:hover td{background:#fafbfc}
         <button class="btn btn-secondary" onclick="limpiar()">Limpiar</button>
         <button class="btn btn-primary" onclick="guardar()">Guardar ficha</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- REGISTRO DE LESIONES -->
+<div class="page" id="page-lesiones">
+  <div class="topbar"><h1>Registro de lesiones</h1></div>
+  <div class="content">
+    <div class="stats" id="stats-lesiones"></div>
+    <div class="card">
+      <div class="card-header"><h2>Todas las lesiones registradas <span style="font-size:10px;font-weight:400;color:var(--gris-text)">(OSIICS 2020)</span></h2></div>
+      <div style="overflow-x:auto"><div id="tabla-lesiones"></div></div>
     </div>
   </div>
 </div>
@@ -493,7 +531,7 @@ tbody tr:hover td{background:#fafbfc}
           <div class="eva-val" id="s-eva-act-v" style="font-size:20px">0</div>
         </div>
       </div>
-      <div class="field"><label>Técnicas</label><input type="text" id="s-tec" placeholder="TENS, ultrasonido, ejercicios propioceptivos..."></div>
+      <div class="field"><label>Técnicas utilizadas</label><input type="text" id="s-tec" placeholder="TENS, ultrasonido, ejercicios propioceptivos..."></div>
       <div class="field"><label>Evolución</label>
         <select id="s-evol"><option value="">—</option><option>Muy buena</option><option>Buena</option><option>Regular</option><option>Sin cambios</option><option>Retroceso</option></select>
       </div>
@@ -509,170 +547,213 @@ tbody tr:hover td{background:#fafbfc}
 <div class="toast" id="toast"></div>
 
 <script>
-// ── DATOS ──
+const PATOLOGIAS = {
+  'Músculo':['Distensión / desgarro grado I','Rotura parcial grado II','Rotura completa grado III','Contusión muscular','Calambre / espasmo'],
+  'Tendón':['Tendinopatía','Rotura parcial','Rotura completa','Tenosinovitis'],
+  'Ligamento':['Esguince grado I (distensión)','Esguince grado II (rotura parcial)','Esguince grado III (rotura completa)'],
+  'Hueso':['Fractura aguda','Fractura por estrés','Contusión ósea'],
+  'Cartílago':['Condropatía','Lesión condral','Lesión osteocondral (OCD)'],
+  'Bursa':['Bursitis aguda','Bursitis crónica'],
+  'Nervio':['Neuropatía','Atrapamiento nervioso','Contusión nerviosa','Neuralgia'],
+  'Piel/Fascia':['Abrasión','Laceración','Contusión','Fascitis'],
+  'Articulación':['Luxación','Subluxación','Sinovitis']
+};
+
 const TESTS = {
   'Rodilla':[
-    {n:'Lachman',d:'Paciente en decúbito dorsal, rodilla en 20-30° de flexión. Se tracciona la tibia anteriormente. Positivo: traslación anterior aumentada sin tope firme. Evalúa integridad del LCA.'},
-    {n:'Cajón anterior',d:'Similar a Lachman pero con rodilla en 90°. Positivo si hay traslación anterior de tibia mayor a 6mm.'},
-    {n:'McMurray',d:'Flexión máxima + rotación interna/externa + extensión progresiva. Positivo: click o dolor en línea articular. Evalúa meniscos.'},
-    {n:'Thessaly',d:'Paciente en un pie con rodilla en 20° de flexión, realiza rotaciones del tronco. Positivo: dolor o bloqueo en línea articular.'},
-    {n:'Varo / Valgo stress',d:'Rodilla en extensión y 30° de flexión. Se aplica stress en varo (LCL) y valgo (LCM). Positivo: apertura articular aumentada.'},
-    {n:'Pivot shift',d:'Evalúa insuficiencia del LCA. Rodilla extendida + rotación interna + valgo progresivo. Positivo: subluxación del platillo tibial lateral.'}
+    {n:'Lachman',d:'Decúbito dorsal, rodilla 20-30° flexión. Se tracciona la tibia anteriormente. (+): traslación anterior aumentada sin tope firme. Evalúa LCA. Sensibilidad ~85%, especificidad ~94%.'},
+    {n:'Cajón anterior',d:'Rodilla en 90°. Se tracciona la tibia anteriormente. (+): traslación >6mm. Evalúa LCA (menor sensibilidad que Lachman en agudo).'},
+    {n:'Cajón posterior',d:'Rodilla en 90°. Se empuja la tibia posteriormente. (+): traslación posterior. Evalúa LCP.'},
+    {n:'McMurray',d:'Flexión máxima + rotación interna/externa + extensión. (+): click o dolor en línea articular. Evalúa meniscos. Mayor sensibilidad en menisco medial.'},
+    {n:'Thessaly',d:'Paciente en un pie, rodilla 20° flexión, rotaciones del tronco. (+): dolor o bloqueo en línea articular. Evalúa meniscos. Alta especificidad.'},
+    {n:'Varo stress (LCL)',d:'Rodilla en extensión y 30° flexión. Stress en varo. (+): apertura articular lateral aumentada vs contralateral.'},
+    {n:'Valgo stress (LCM)',d:'Rodilla en extensión y 30° flexión. Stress en valgo. (+): apertura articular medial aumentada vs contralateral.'},
+    {n:'Pivot shift',d:'Rodilla extendida + rotación interna tibia + valgo progresivo. (+): subluxación del platillo tibial lateral. Muy específico para insuficiencia LCA.'}
   ],
-  'Tobillo / pie':[
-    {n:'Cajón anterior de tobillo',d:'Tobillo en posición neutra. Se tracciona el pie hacia adelante. Positivo: traslación anterior aumentada vs lado sano. Evalúa LLE (fascículo anterior).'},
-    {n:'Stress en inversión',d:'Se aplica stress en inversión al tobillo. Positivo: mayor apertura articular que el lado contralateral.'},
-    {n:'Thompson',d:'Paciente en prono, se comprime el gemelo. Positivo: ausencia de flexión plantar del pie. Evalúa rotura del tendón de Aquiles.'}
+  'Tobillo':[
+    {n:'Cajón anterior tobillo',d:'Tobillo neutro, se tracciona el pie hacia adelante. (+): traslación >5mm vs lado sano. Evalúa fascículo anterior del LLE. Sensibilidad ~71%, especificidad ~33%.'},
+    {n:'Stress en inversión',d:'Stress en inversión del tobillo. (+): apertura articular aumentada. Evalúa LLE completo (fascículo anterior + calcáneo-peroneo).'},
+    {n:'Thompson',d:'Paciente en prono, se comprime el gemelo. (-): flexión plantar del pie. (+): ausencia de flexión plantar. Evalúa integridad del tendón de Aquiles. Sensibilidad ~96%.'},
+    {n:'Squeeze test (Maisonneuve)',d:'Compresión de tibia y peroné en tercio medio. (+): dolor en tobillo. Evalúa sindesmosis tibioperonea.'}
   ],
   'Hombro':[
-    {n:'Neer',d:'Estabilización de escápula + elevación pasiva del brazo en rotación interna. Positivo: dolor entre 70-120°. Evalúa síndrome subacromial.'},
-    {n:'Hawkins-Kennedy',d:'Hombro y codo en 90° + rotación interna forzada. Positivo: dolor en región subacromial.'},
-    {n:'Empty can (Jobe)',d:'Abducción a 90° en plano de la escápula, rotación interna + resistencia. Positivo: dolor o debilidad. Evalúa supraespinoso.'},
-    {n:'Aprehensión',d:'Abducción 90° + rotación externa pasiva. Positivo: sensación de que el hombro se va a luxar. Evalúa inestabilidad anterior.'},
-    {n:'Speed',d:'Codo extendido, supinación, elevación con resistencia. Positivo: dolor en corredera bicipital. Evalúa tendón largo del bíceps.'},
-    {n:"O'Brien (SLAP)",d:'Flexión 90°, aducción 10°, rotación interna + resistencia. Positivo si duele y mejora al rotar externamente.'}
+    {n:'Neer',d:'Estabilización de escápula + elevación pasiva del brazo en rotación interna. (+): dolor entre 70-120°. Evalúa síndrome subacromial.'},
+    {n:'Hawkins-Kennedy',d:'Hombro y codo a 90° + rotación interna forzada. (+): dolor subacromial. Sensibilidad ~79%, especificidad ~59%.'},
+    {n:'Empty can / Jobe',d:'Abducción 90° en plano escapular, rotación interna + resistencia. (+): dolor o debilidad. Evalúa supraespinoso. Sensibilidad ~69%.'},
+    {n:'Aprehensión anterior',d:'Abducción 90° + rotación externa pasiva. (+): sensación subjetiva de luxación. Evalúa inestabilidad anterior glenohumeral.'},
+    {n:'Reubicación (Jobe)',d:'Tras aprehensión +, se aplica fuerza posterior sobre la cabeza humeral. (+): alivio de síntomas. Confirma inestabilidad anterior.'},
+    {n:'Speed',d:'Codo extendido, supinación, elevación con resistencia. (+): dolor en corredera bicipital. Evalúa tendón largo del bíceps.'},
+    {n:"O'Brien (SLAP)",d:'Flexión 90°, aducción 10°, rotación interna + resistencia. (+): dolor que mejora al rotar externamente. Evalúa lesiones SLAP y AC. Sensibilidad ~100%, especificidad ~98% (SLAP).'},
+    {n:'Cross-arm test (AC)',d:'Flexión 90° + aducción horizontal forzada. (+): dolor en articulación acromioclavicular.'}
   ],
-  'Columna lumbar':[
-    {n:'Lasègue (SLR)',d:'Elevación pasiva de la pierna extendida. Positivo: dolor irradiado por debajo de la rodilla entre 30-70°. Evalúa compromiso radicular L4-S1.'},
-    {n:'Slump test',d:'Posición sentada, flexión de columna + extensión de rodilla + flexión dorsal. Positivo: reproducción de síntomas neurales.'},
-    {n:'Prueba de Schober',d:'Se marca L5 y 10cm arriba. Al flexionar debe aumentar al menos 5cm. Evalúa movilidad lumbar.'}
+  'Columna Lumbar/Sacra':[
+    {n:'Lasègue / SLR',d:'Elevación pasiva de la pierna extendida. (+): dolor irradiado por debajo de la rodilla entre 30-70°. Evalúa compromiso radicular L4-S1. Sensibilidad ~80%, especificidad ~40%.'},
+    {n:'SLR cruzado',d:'Elevación de la pierna sana reproduce síntomas en la pierna afectada. Alta especificidad para hernia discal con compresión radicular.'},
+    {n:'Slump test',d:'Posición sentada, flexión columna + extensión rodilla + flexión dorsal pie. (+): reproducción de síntomas neurales. Sensibilidad ~84%.'},
+    {n:'Prueba de Schober',d:'Se marca L5 y 10cm arriba. Al flexionar debe aumentar ≥5cm. Evalúa movilidad lumbar. (+limitación): aumento <4cm.'},
+    {n:'Trendelenburg',d:'En un pie, se observa la pelvis. (+): caída del lado contralateral. Evalúa debilidad del glúteo medio.'},
+    {n:'FABER (SI)',d:'Flexión, Abducción y Rotación Externa. (+) dolor sacroilíaco: patología sacroilíaca. (+) dolor inguinal: patología de cadera.'}
   ],
-  'Columna cervical':[
-    {n:'Spurling',d:'Inclinación lateral + rotación + compresión axial. Positivo: dolor irradiado al miembro superior. Evalúa compresión radicular cervical.'},
-    {n:'Distracción cervical',d:'Tracción cervical alivia síntomas radiculares. Positivo: alivio del dolor con la tracción.'}
+  'Cuello':[
+    {n:'Spurling',d:'Inclinación lateral + rotación ipsilateral + compresión axial. (+): dolor irradiado al miembro superior. Evalúa compresión radicular cervical. Especificidad ~93%.'},
+    {n:'Distracción cervical',d:'Tracción manual del cráneo. (+): alivio del dolor irradiado. Confirma compresión radicular cervical.'},
+    {n:'Test de Adson',d:'Extensión cervical + rotación ipsilateral + inspiración profunda. (+): desaparición del pulso radial. Evalúa síndrome del desfiladero torácico.'},
+    {n:'Flexión-rotación (C1-C2)',d:'Flexión máxima cervical + rotación. (+): limitación >10° vs contralateral. Evalúa disfunción atlanto-axoidea.'}
   ],
-  'Cadera':[
-    {n:'FABER / Patrick',d:'Flexión, Abducción y Rotación Externa. Positivo: dolor inguinal (cadera) o sacroilíaco (SI).'},
-    {n:'FADIR',d:'Flexión, Aducción y Rotación Interna. Positivo: dolor inguinal anterior. Evalúa choque femoroacetabular.'},
-    {n:'Thomas',d:'Decúbito dorsal, una rodilla al pecho. Positivo: la pierna contraria se eleva de la camilla. Evalúa contractura de iliopsoas.'}
+  'Cadera/Ingle':[
+    {n:'FABER / Patrick',d:'Flexión, Abducción y Rotación Externa. (+) ingle: patología de cadera / (+) sacroilíaca: patología sacroilíaca.'},
+    {n:'FADIR',d:'Flexión, Aducción y Rotación Interna. (+): dolor inguinal anterior. Evalúa choque femoroacetabular (FAI). Sensibilidad ~78%.'},
+    {n:'Thomas',d:'Decúbito dorsal, una rodilla al pecho. (+): la pierna contraria se eleva de la camilla. Evalúa contractura de iliopsoas.'},
+    {n:'Ober',d:'Decúbito lateral, abducción y extensión pasiva de cadera. (+): la pierna no desciende libremente. Evalúa banda iliotibial.'},
+    {n:'SQUEEZE test (aductores)',d:'Decúbito dorsal, rodillas flexionadas, pelota entre rodillas. (+): dolor en ingle. Evalúa lesión de aductores / pubalgia.'}
   ],
   'Codo':[
-    {n:'Cozen',d:'Extensión de muñeca con resistencia con codo extendido. Positivo: dolor en epicóndilo lateral. Evalúa epicondilitis lateral.'},
-    {n:'Epicondilitis medial',d:'Flexión de muñeca con resistencia. Positivo: dolor en epitróclea. Evalúa epitrocleítis.'}
+    {n:'Cozen (epicondilitis lateral)',d:'Extensión de muñeca con resistencia, codo extendido. (+): dolor en epicóndilo lateral. Sensibilidad ~72%.'},
+    {n:'Mill',d:'Pronación de antebrazo + extensión de muñeca con codo extendido. (+): dolor epicóndilo lateral.'},
+    {n:'Test de la silla',d:'Levantar silla con codo extendido y antebrazo pronado. (+): dolor epicóndilo lateral.'},
+    {n:'Flexión de muñeca con resistencia (medial)',d:'Flexión de muñeca con resistencia. (+): dolor en epitróclea. Evalúa epitrocleítis / codo de golfista.'}
   ],
-  'Muñeca / mano':[
-    {n:'Finkelstein',d:'Pulgar en palma + desviación cubital. Positivo: dolor en apófisis estiloides del radio. Evalúa tenosinovitis de De Quervain.'},
-    {n:'Phalen',d:'Flexión máxima de muñeca por 60 segundos. Positivo: parestesias en territorio del nervio mediano. Evalúa síndrome del túnel carpiano.'}
+  'Muñeca':[
+    {n:'Finkelstein',d:'Pulgar en palma + desviación cubital pasiva. (+): dolor en apófisis estiloides del radio. Evalúa tenosinovitis de De Quervain. Sensibilidad ~89%.'},
+    {n:'Phalen',d:'Flexión máxima de muñeca mantenida 60s. (+): parestesias en territorio del nervio mediano. Evalúa síndrome del túnel carpiano. Sensibilidad ~68%.'},
+    {n:'Tinel en muñeca',d:'Percusión sobre el túnel carpiano. (+): parestesias en territorio del nervio mediano. Especificidad ~77%.'},
+    {n:'Prueba de Watson (escafoides)',d:'Compresión del escafoides + desviación cubital a radial. (+): click o dolor. Evalúa inestabilidad escafolunar.'}
+  ],
+  'Muslo':[
+    {n:'Isquiotibiales — longitud',d:'SLR pasivo con rodilla extendida. Se mide el ángulo poplíteo. Normal: >160°. Evalúa flexibilidad de isquiotibiales.'},
+    {n:'Thomas modificado (recto femoral)',d:'Decúbito dorsal, una rodilla al pecho. Se observa si la pierna contraria queda elevada o si la rodilla no puede flexionar a 90°. Evalúa contractura del recto femoral.'},
+    {n:'Ely test',d:'Decúbito prono, se flexiona la rodilla pasivamente. (+): la cadera ipsilateral se flexiona involuntariamente. Evalúa contractura del recto femoral.'}
+  ],
+  'Pie/Dedos':[
+    {n:'Jack test (fascia plantar)',d:'Extensión pasiva del primer dedo del pie. (+): dolor en inserción de la fascia plantar. Evalúa fascitis plantar.'},
+    {n:'Windlass test',d:'Paciente de pie, se extiende el primer dedo. (+): dolor en fascia plantar reproducido en carga. Mayor especificidad que Jack test.'},
+    {n:'Compresión del antepié',d:'Compresión lateral del antepié. (+): dolor o click. Evalúa neuroma de Morton.'}
   ]
 };
 
+const EVALUACIONES_SUGERIDAS = {
+  'Rodilla':{
+    'cuestionarios':['KOOS (Knee Injury and Osteoarthritis Outcome Score)','IKDC (International Knee Documentation Committee)','VISA-P (si tendinopatía rotuliana)','Lysholm scale'],
+    'funcionales':['Salto monopodal (single hop test)','Triple hop test','Crossover hop test','6 metros hop test','Cuclillas monopodales','Bajada de escalón'],
+    'fuerza':['Dinamometría isométrica cuádriceps/isquiotibiales','Ratio isquio/cuádriceps','Test de 1RM (fase avanzada)']
+  },
+  'Tobillo':[
+    {cat:'Cuestionarios',items:['FAAM (Foot and Ankle Ability Measure)','LEFS (Lower Extremity Functional Scale)','VISA-A (si tendinopatía aquílea)','Manchester-Oxford Foot Questionnaire']},
+    {cat:'Equilibrio',items:['Star Excursion Balance Test (SEBT)','Y-Balance Test','BESS (Balance Error Scoring System)','Apoyo monopodal con ojos cerrados (segundos)']},
+    {cat:'Funcionales',items:['Figura en 8','Side hop test','Square hop test','Carrera en línea recta']}
+  ],
+  'Hombro':[
+    {cat:'Cuestionarios',items:['DASH (Disabilities of the Arm, Shoulder and Hand)','WORC (Western Ontario Rotator Cuff Index)','ASES (American Shoulder and Elbow Surgeons)','WOSI (Western Ontario Shoulder Instability)']},
+    {cat:'Movilidad',items:['Arco de movimiento activo y pasivo (flex/ext/abd/rot)','Movilidad escapular (diskinesia)','Relación glenohumeral/escapulotorácica']},
+    {cat:'Fuerza',items:['Dinamometría rotadores internos/externos','Ratio RI/RE','Abductores: Hand-held dynamometer']}
+  ],
+  'Columna Lumbar/Sacra':[
+    {cat:'Cuestionarios',items:['Oswestry Disability Index (ODI)','Roland-Morris Disability Questionnaire','TAMPA Scale of Kinesiophobia','STarT Back Screening Tool','Escala de catastrofización del dolor (PCS)']},
+    {cat:'Funcionales',items:['Test de Schober','Sit and reach','Resistencia de extensores lumbares (Biering-Sørensen)','Puente prono (tiempo)','Resistencia de flexores (McGill curl-up)']}
+  ],
+  'Cadera/Ingle':[
+    {cat:'Cuestionarios',items:['HAGOS (Copenhagen Hip and Groin Outcome Score)','iHOT-12 (International Hip Outcome Tool)','HOS (Hip Outcome Score)']},
+    {cat:'Funcionales',items:['Trendelenburg dinámico','Sentadilla monopodal (calidad de movimiento)','Copenhagen adductor test','Squeeze test (kg/N con dinamómetro)']}
+  ],
+  'Muslo':[
+    {cat:'Cuestionarios',items:['LEFS (Lower Extremity Functional Scale)']},
+    {cat:'Funcionales',items:['Carrera en línea recta progresiva','Salto horizontal','Sprints cortos (10-30m)','Nordic hamstring (eccentric strength)','Ángulo poplíteo (flexibilidad isquiotibiales)']}
+  ]
+};
+
+const SEV_MAP = {min:'Mínima (1-3 días)',lev:'Leve (4-7 días)',mod:'Moderada (8-28 días)',sev:'Severa (>28 días)'};
 const EVA_DESC = ['Sin dolor','Muy leve','Leve','Leve-moderado','Moderado','Moderado','Moderado-intenso','Intenso','Muy intenso','Severo','El peor dolor posible'];
 
-let DB = JSON.parse(localStorage.getItem('kineba_db') || '[]');
+let DB = JSON.parse(localStorage.getItem('kineba_db')||'[]');
 let pacActual = null;
 let actCount = 0;
 let linkCount = 0;
+let sevActual = '';
 
-// ── NAVEGACIÓN ──
-function showPage(pg) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.sb-btn, .mob-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('page-' + pg).classList.add('active');
-  const ids = ['inicio','pacientes','ficha'];
-  const idx = ids.indexOf(pg);
-  if (idx >= 0) {
-    const sbs = document.querySelectorAll('.sb-btn');
-    const mobs = document.querySelectorAll('.mob-btn');
-    if (sbs[idx]) sbs[idx].classList.add('active');
-    if (mobs[idx]) mobs[idx].classList.add('active');
+function showPage(pg){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sb-btn,.mob-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+pg).classList.add('active');
+  const ids=['inicio','pacientes','ficha','lesiones'];
+  const idx=ids.indexOf(pg);
+  if(idx>=0){
+    document.querySelectorAll('.sb-btn')[idx]?.classList.add('active');
+    document.querySelectorAll('.mob-btn')[idx]?.classList.add('active');
   }
-  if (pg === 'inicio') renderInicio();
-  if (pg === 'pacientes') renderPacientes('');
-  if (pg === 'ficha') { document.getElementById('f-fecha').value = hoy(); calcPQ(); }
+  if(pg==='inicio') renderInicio();
+  if(pg==='pacientes') renderPacientes('');
+  if(pg==='ficha'){document.getElementById('f-fecha').value=hoy();calcPQ();}
+  if(pg==='lesiones') renderLesiones();
 }
 
-function showTab(id, btn) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
+function showTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
   btn.classList.add('active');
-  if (id === 'cargas') renderCargas();
+  if(id==='cargas') renderCargas();
 }
 
-// ── HELPERS ──
-function hoy() { return new Date().toISOString().split('T')[0]; }
-function fmt(s) { if (!s) return '—'; const d = new Date(s + 'T12:00'); return d.toLocaleDateString('es-AR', {day:'2-digit',month:'short',year:'numeric'}); }
-function ini(n) { const p = n.trim().split(/[\s,]+/); return ((p[0]?.[0]||'')+(p[1]?.[0]||p[0]?.[1]||'')).toUpperCase(); }
-function save() { localStorage.setItem('kineba_db', JSON.stringify(DB)); }
-function toast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2500); }
+function hoy(){return new Date().toISOString().split('T')[0];}
+function fmt(s){if(!s)return'—';const d=new Date(s+'T12:00');return d.toLocaleDateString('es-AR',{day:'2-digit',month:'short',year:'numeric'});}
+function ini(n){const p=n.trim().split(/[\s,]+/);return((p[0]?.[0]||'')+(p[1]?.[0]||p[0]?.[1]||'')).toUpperCase();}
+function save(){localStorage.setItem('kineba_db',JSON.stringify(DB));}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 
-// ── EVA ──
-function updEva(t) {
-  const v = document.getElementById('f-eva-' + t).value;
-  document.getElementById('eva-' + t + '-v').textContent = v;
-  document.getElementById('eva-' + t + '-d').textContent = EVA_DESC[v];
+function updEva(t){
+  const v=document.getElementById('f-eva-'+t).value;
+  document.getElementById('eva-'+t+'-v').textContent=v;
+  document.getElementById('eva-'+t+'-d').textContent=EVA_DESC[v];
 }
 
-// ── POST-QX ──
-function calcPQ() {
-  const d = document.getElementById('f-fecha-cx').value;
-  if (!d) { document.getElementById('f-spq').value = ''; return; }
-  const dias = Math.floor((Date.now() - new Date(d + 'T12:00')) / 86400000);
-  const sem = Math.floor(dias / 7);
-  document.getElementById('f-spq').value = sem > 0 ? 'Semana ' + sem + ' post-quirúrgica' : 'Menos de 1 semana';
+function calcPQ(){
+  const d=document.getElementById('f-fecha-cx').value;
+  if(!d){document.getElementById('f-spq').value='';return;}
+  const dias=Math.floor((Date.now()-new Date(d+'T12:00'))/86400000);
+  const sem=Math.floor(dias/7);
+  document.getElementById('f-spq').value=sem>0?'Semana '+sem+' post-quirúrgica':'Menos de 1 semana';
 }
 
-// ── ACTIVIDADES ──
-function addAct() {
-  const id = ++actCount;
-  const el = document.createElement('div');
-  el.className = 'act-row';
-  el.id = 'act-' + id;
-  el.innerHTML = `
-    <div class="field"><label>Deporte / actividad</label><input type="text" id="ad-${id}" placeholder="Fútbol / Hockey..."></div>
-    <div class="field"><label>Nivel</label><select id="an-${id}"><option value="">—</option><option>Recreativo</option><option>Amateur competitivo</option><option>Semiprofesional</option><option>Profesional</option></select></div>
-    <div class="field"><label>Frecuencia</label><input type="text" id="af-${id}" placeholder="2x semana..."></div>
-    <button class="btn-del" onclick="document.getElementById('act-${id}').remove()">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
-    </button>`;
-  document.getElementById('act-list').appendChild(el);
+function onTejidoChange(){
+  const tejido=document.getElementById('f-tejido').value;
+  const sel=document.getElementById('f-patologia');
+  sel.innerHTML='<option value="">— Seleccionar —</option>';
+  if(tejido&&PATOLOGIAS[tejido]){
+    PATOLOGIAS[tejido].forEach(p=>{const o=document.createElement('option');o.textContent=p;sel.appendChild(o);});
+  }
+  actualizarDiag();
 }
 
-function getActs() {
-  const r = [];
-  document.querySelectorAll('[id^="act-"]').forEach(el => {
-    const id = el.id.split('-')[1];
-    const d = document.getElementById('ad-' + id)?.value;
-    if (d) r.push({ dep: d, niv: document.getElementById('an-' + id)?.value || '', frec: document.getElementById('af-' + id)?.value || '' });
-  });
-  return r;
+function onRegionChange(){
+  const region=document.getElementById('f-region').value;
+  cargarTests(region);
+  cargarEvalSugeridas(region);
+  actualizarDiag();
 }
 
-// ── LINKS ──
-function addLink() {
-  const id = ++linkCount;
-  const el = document.createElement('div');
-  el.className = 'link-row';
-  el.id = 'link-' + id;
-  el.innerHTML = `
-    <input type="text" id="lv-${id}" placeholder="Descripción o URL (https://...)">
-    <button class="btn-link" onclick="abrirLink(${id})">Abrir</button>
-    <button class="btn-del" onclick="document.getElementById('link-${id}').remove()">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>`;
-  document.getElementById('link-list').appendChild(el);
+function actualizarDiag(){
+  const r=document.getElementById('f-region').value;
+  const l=document.getElementById('f-lado').value;
+  const t=document.getElementById('f-tejido').value;
+  const p=document.getElementById('f-patologia').value;
+  const parts=[p,t?'('+t+')':'',r,l].filter(Boolean);
+  const diag=parts.join(' — ');
+  const el=document.getElementById('diag-resultado');
+  if(diag){
+    el.textContent='📋 Diagnóstico sugerido: '+diag;
+    el.classList.add('visible');
+    document.getElementById('f-diag').placeholder=diag;
+  } else {
+    el.classList.remove('visible');
+  }
 }
 
-function abrirLink(id) {
-  const u = document.getElementById('lv-' + id)?.value;
-  if (u && u.startsWith('http')) window.open(u, '_blank');
-}
-
-function getLinks() {
-  const r = [];
-  document.querySelectorAll('[id^="link-"]').forEach(el => {
-    const id = el.id.split('-')[1];
-    const v = document.getElementById('lv-' + id)?.value;
-    if (v) r.push(v);
-  });
-  return r;
-}
-
-// ── TESTS ──
-function cargarTests(region) {
-  const c = document.getElementById('tests-cont');
-  if (!region || !TESTS[region]) { c.innerHTML = '<p style="font-size:12px;color:var(--gris-text)">Seleccioná la región afectada para ver los tests.</p>'; return; }
-  c.innerHTML = TESTS[region].map((t, i) => `
+function cargarTests(region){
+  const mapeo={'Tobillo':'Tobillo','Pie/Dedos':'Pie/Dedos','Muslo':'Muslo','Muñeca':'Muñeca','Mano/Dedos':'Muñeca','Antebrazo':'Muñeca'};
+  const key=mapeo[region]||region;
+  const cont=document.getElementById('tests-cont');
+  if(!key||!TESTS[key]){cont.innerHTML='<p style="font-size:12px;color:var(--gris-text)">Seleccioná la región corporal para ver los tests sugeridos.</p>';return;}
+  cont.innerHTML=TESTS[key].map((t,i)=>`
     <div class="test-item">
       <div class="test-head">
         <input type="checkbox" id="tc-${i}" value="${t.n}">
@@ -683,300 +764,348 @@ function cargarTests(region) {
     </div>`).join('');
 }
 
-function toggleTest(i) {
-  const el = document.getElementById('tb-' + i);
-  el.classList.toggle('open');
+function toggleTest(i){document.getElementById('tb-'+i).classList.toggle('open');}
+function getTests(){return Array.from(document.querySelectorAll('[id^="tc-"]:checked')).map(el=>el.value);}
+
+function cargarEvalSugeridas(region){
+  const cont=document.getElementById('eval-sugeridas-container');
+  const data=EVALUACIONES_SUGERIDAS[region];
+  if(!data){cont.innerHTML='';return;}
+  const categorias=Array.isArray(data)?data:Object.entries(data).map(([k,v])=>({cat:k,items:v}));
+  cont.innerHTML=`<div class="eval-sugeridas">
+    <h4>Evaluaciones sugeridas para ${region}</h4>
+    ${categorias.map((c,ci)=>`
+      <div class="eval-categoria">
+        <h5>${c.cat}</h5>
+        <div class="eval-items">
+          ${c.items.map((item,ii)=>`
+            <label class="eval-chip" id="ec-label-${ci}-${ii}">
+              <input type="checkbox" id="ec-${ci}-${ii}" value="${item}" onchange="toggleChip(this,'ec-label-${ci}-${ii}')">
+              ${item}
+            </label>`).join('')}
+        </div>
+      </div>`).join('')}
+  </div>`;
 }
 
-function getTests() {
-  return Array.from(document.querySelectorAll('[id^="tc-"]:checked')).map(el => el.value);
+function toggleChip(cb,labelId){
+  document.getElementById(labelId).classList.toggle('checked',cb.checked);
 }
 
-// ── GUARDAR FICHA ──
-function guardar() {
-  const nombre = document.getElementById('f-nombre').value.trim();
-  if (!nombre) { alert('Ingresá el nombre del paciente'); return; }
-  const cis = Array.from(document.querySelectorAll('.check-opt input:checked')).map(el => el.value);
-  const lat = document.querySelector('input[name="lat"]:checked')?.value || '';
-  const p = {
-    id: Date.now().toString(),
-    nombre, fecha: document.getElementById('f-fecha').value,
-    nac: document.getElementById('f-nac').value,
-    sexo: document.getElementById('f-sexo').value,
-    dni: document.getElementById('f-dni').value,
-    tel: document.getElementById('f-tel').value,
-    cob: document.getElementById('f-cob').value,
-    medico: document.getElementById('f-medico').value,
-    kine: document.getElementById('f-kine').value,
-    ocup: document.getElementById('f-ocup').value,
-    actividades: getActs(),
-    diag: document.getElementById('f-diag').value,
-    region: document.getElementById('f-region').value,
-    evol: document.getElementById('f-evol').value,
-    lat, mec: document.getElementById('f-mec').value,
-    sint: document.getElementById('f-sint').value,
-    ant: document.getElementById('f-ant').value,
-    links: getLinks(),
-    cx: document.getElementById('f-cx').value,
-    fechaCx: document.getElementById('f-fecha-cx').value,
-    ciru: document.getElementById('f-ciru').value,
-    spq: document.getElementById('f-spq').value,
-    cis, roms: document.getElementById('f-roms').value,
-    roma: document.getElementById('f-roma').value,
-    fuerza: document.getElementById('f-fuerza').value,
-    tests: getTests(),
-    evaRep: document.getElementById('f-eva-rep').value,
-    evaAct: document.getElementById('f-eva-act').value,
-    obj: document.getElementById('f-obj').value,
-    plan: document.getElementById('f-plan').value,
-    obs: document.getElementById('f-obs').value,
-    sesiones: [], cargas: [], estado: 'En curso'
+function getEvalSeleccionadas(){
+  return Array.from(document.querySelectorAll('[id^="ec-"]:checked')).map(el=>el.value);
+}
+
+function selSev(s){
+  sevActual=s;
+  ['min','lev','mod','sev'].forEach(k=>{
+    const el=document.getElementById('sev-'+k);
+    el.className='sev-opt'+(k===s?' selected-'+k:'');
+  });
+}
+
+function addAct(){
+  const id=++actCount;
+  const el=document.createElement('div');
+  el.className='act-row';el.id='act-'+id;
+  el.innerHTML=`
+    <div class="field"><label>Deporte / actividad</label><input type="text" id="ad-${id}" placeholder="Fútbol / Hockey..."></div>
+    <div class="field"><label>Nivel</label><select id="an-${id}"><option value="">—</option><option>Recreativo</option><option>Amateur competitivo</option><option>Semiprofesional</option><option>Profesional</option></select></div>
+    <div class="field"><label>Frecuencia</label><input type="text" id="af-${id}" placeholder="2x semana..."></div>
+    <button class="btn-del" onclick="document.getElementById('act-${id}').remove()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
+    </button>`;
+  document.getElementById('act-list').appendChild(el);
+}
+
+function getActs(){
+  const r=[];
+  document.querySelectorAll('[id^="act-"]').forEach(el=>{
+    const id=el.id.split('-')[1];
+    const d=document.getElementById('ad-'+id)?.value;
+    if(d)r.push({dep:d,niv:document.getElementById('an-'+id)?.value||'',frec:document.getElementById('af-'+id)?.value||''});
+  });
+  return r;
+}
+
+let linkCounters={};
+function addLink(listId,prefix){
+  if(!linkCounters[prefix])linkCounters[prefix]=0;
+  const id=++linkCounters[prefix];
+  const el=document.createElement('div');
+  el.className='link-row';el.id=prefix+'-'+id;
+  el.innerHTML=`
+    <input type="text" id="${prefix}-v-${id}" placeholder="Descripción o URL (https://...)">
+    <button class="btn-link" onclick="abrirLink('${prefix}-v-${id}')">Abrir</button>
+    <button class="btn-del" onclick="document.getElementById('${prefix}-${id}').remove()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>`;
+  document.getElementById(listId).appendChild(el);
+}
+
+function abrirLink(inputId){
+  const u=document.getElementById(inputId)?.value;
+  if(u&&u.startsWith('http'))window.open(u,'_blank');
+}
+
+function getLinks(prefix){
+  const r=[];
+  document.querySelectorAll(`[id^="${prefix}-v-"]`).forEach(el=>{if(el.value)r.push(el.value);});
+  return r;
+}
+
+function guardar(){
+  const nombre=document.getElementById('f-nombre').value.trim();
+  if(!nombre){alert('Ingresá el nombre del paciente');return;}
+  const cis=Array.from(document.querySelectorAll('.check-opt input:checked')).map(el=>el.value);
+  const p={
+    id:Date.now().toString(),
+    nombre,fecha:document.getElementById('f-fecha').value,
+    nac:document.getElementById('f-nac').value,
+    sexo:document.getElementById('f-sexo').value,
+    dni:document.getElementById('f-dni').value,
+    tel:document.getElementById('f-tel').value,
+    cob:document.getElementById('f-cob').value,
+    medico:document.getElementById('f-medico').value,
+    kine:document.getElementById('f-kine').value,
+    ocup:document.getElementById('f-ocup').value,
+    actividades:getActs(),
+    region:document.getElementById('f-region').value,
+    tejido:document.getElementById('f-tejido').value,
+    patologia:document.getElementById('f-patologia').value,
+    lado:document.getElementById('f-lado').value,
+    contexto:document.getElementById('f-contexto').value,
+    mecanismo:document.getElementById('f-mecanismo').value,
+    diag:document.getElementById('f-diag').value||document.getElementById('f-diag').placeholder,
+    descEvento:document.getElementById('f-desc-evento').value,
+    evol:document.getElementById('f-evol').value,
+    severidad:sevActual?SEV_MAP[sevActual]:'',
+    estudios:getLinks('estudios-link'),
+    motivo:document.getElementById('f-motivo').value,
+    sint:document.getElementById('f-sint').value,
+    ant:document.getElementById('f-ant').value,
+    antMed:document.getElementById('f-ant-med').value,
+    cx:document.getElementById('f-cx').value,
+    fechaCx:document.getElementById('f-fecha-cx').value,
+    ciru:document.getElementById('f-ciru').value,
+    spq:document.getElementById('f-spq').value,
+    evalSeleccionadas:getEvalSeleccionadas(),
+    roms:document.getElementById('f-roms').value,
+    roma:document.getElementById('f-roma').value,
+    fuerza:document.getElementById('f-fuerza').value,
+    equilibrio:document.getElementById('f-equilibrio').value,
+    tests:getTests(),
+    evaRep:document.getElementById('f-eva-rep').value,
+    evaAct:document.getElementById('f-eva-act').value,
+    cis,
+    obj:document.getElementById('f-obj').value,
+    plan:document.getElementById('f-plan').value,
+    diasBaja:document.getElementById('f-dias-baja').value,
+    obs:document.getElementById('f-obs').value,
+    sesiones:[],cargas:[],estado:'En curso',
+    fechaAlta:'',motivoAlta:''
   };
-  DB.unshift(p);
-  save();
+  DB.unshift(p);save();
   toast('Ficha guardada');
   limpiar();
   showPage('pacientes');
 }
 
-function limpiar() {
-  document.querySelectorAll('#page-ficha input:not([type=radio]):not([type=checkbox]), #page-ficha select, #page-ficha textarea').forEach(el => el.value = '');
-  document.querySelectorAll('#page-ficha input[type=checkbox], #page-ficha input[type=radio]').forEach(el => el.checked = false);
-  document.getElementById('f-eva-rep').value = 0; updEva('rep');
-  document.getElementById('f-eva-act').value = 0; updEva('act');
-  document.getElementById('f-fecha').value = hoy();
-  document.getElementById('act-list').innerHTML = '';
-  document.getElementById('link-list').innerHTML = '';
-  document.getElementById('tests-cont').innerHTML = '<p style="font-size:12px;color:var(--gris-text)">Seleccioná la región afectada para ver los tests.</p>';
-  actCount = 0; linkCount = 0;
+function limpiar(){
+  document.querySelectorAll('#page-ficha input:not([type=radio]):not([type=checkbox]),#page-ficha select,#page-ficha textarea').forEach(el=>el.value='');
+  document.querySelectorAll('#page-ficha input[type=checkbox],#page-ficha input[type=radio]').forEach(el=>el.checked=false);
+  document.getElementById('f-eva-rep').value=0;updEva('rep');
+  document.getElementById('f-eva-act').value=0;updEva('act');
+  document.getElementById('f-fecha').value=hoy();
+  document.getElementById('act-list').innerHTML='';
+  document.getElementById('estudios-link-list').innerHTML='';
+  document.getElementById('tests-cont').innerHTML='<p style="font-size:12px;color:var(--gris-text)">Seleccioná la región corporal para ver los tests sugeridos.</p>';
+  document.getElementById('eval-sugeridas-container').innerHTML='';
+  document.getElementById('diag-resultado').classList.remove('visible');
+  ['min','lev','mod','sev'].forEach(k=>document.getElementById('sev-'+k).className='sev-opt');
+  sevActual='';actCount=0;linkCounters={};
 }
 
-// ── RENDER INICIO ──
-function renderInicio() {
-  const act = DB.filter(p => p.estado === 'En curso').length;
-  const alt = DB.filter(p => p.estado === 'Alta').length;
-  const sem = new Date(Date.now() - 7 * 86400000).toISOString().split('T')[0];
-  const rec = DB.filter(p => p.fecha >= sem).length;
-  document.getElementById('stats').innerHTML = `
+function renderInicio(){
+  const act=DB.filter(p=>p.estado==='En curso').length;
+  const alt=DB.filter(p=>p.estado==='Alta').length;
+  const sem=new Date(Date.now()-7*86400000).toISOString().split('T')[0];
+  const rec=DB.filter(p=>p.fecha>=sem).length;
+  document.getElementById('stats').innerHTML=`
     <div class="stat"><div class="num">${DB.length}</div><div class="lbl">Pacientes totales</div><div class="sub">${act} en curso · ${alt} de alta</div></div>
     <div class="stat"><div class="num">${rec}</div><div class="lbl">Ingresos esta semana</div></div>
     <div class="stat"><div class="num">${DB.filter(p=>p.kine==='Julián').length} / ${DB.filter(p=>p.kine==='Juampi').length}</div><div class="lbl">Julián / Juampi</div></div>`;
-  const ult = DB.slice(0, 8);
-  document.getElementById('tabla-inicio').innerHTML = ult.length ? tablaHTML(ult) : '<div class="empty"><p>No hay pacientes cargados todavía.</p><button class="btn btn-primary btn-sm" onclick="showPage(\'ficha\')">Crear primera ficha</button></div>';
+  const ult=DB.slice(0,8);
+  document.getElementById('tabla-inicio').innerHTML=ult.length?tablaHTML(ult):'<div class="empty"><p>No hay pacientes cargados todavía.</p><button class="btn btn-primary btn-sm" onclick="showPage(\'ficha\')">Crear primera ficha</button></div>';
 }
 
-// ── RENDER PACIENTES ──
-function renderPacientes(q) {
-  const lista = q ? DB.filter(p => p.nombre.toLowerCase().includes(q.toLowerCase())) : DB;
-  document.getElementById('tabla-pacientes').innerHTML = lista.length ? tablaHTML(lista) : '<div class="empty"><p>' + (q ? 'Sin resultados para "' + q + '"' : 'No hay pacientes.') + '</p></div>';
+function renderPacientes(q){
+  const lista=q?DB.filter(p=>p.nombre.toLowerCase().includes(q.toLowerCase())):DB;
+  document.getElementById('tabla-pacientes').innerHTML=lista.length?tablaHTML(lista):'<div class="empty"><p>'+(q?'Sin resultados para "'+q+'"':'No hay pacientes.')+'</p></div>';
 }
+function buscar(q){renderPacientes(q);}
 
-function buscar(q) { renderPacientes(q); }
-
-function tablaHTML(lista) {
-  return `<table><thead><tr><th>Paciente</th><th>Diagnóstico</th><th>Kinesiólogo</th><th>Ingreso</th><th>Estado</th></tr></thead><tbody>
-    ${lista.map(p => `<tr onclick="verPaciente('${p.id}')">
+function tablaHTML(lista){
+  return`<table><thead><tr><th>Paciente</th><th>Diagnóstico</th><th>Kinesiólogo</th><th>Ingreso</th><th>Estado</th></tr></thead><tbody>
+    ${lista.map(p=>`<tr onclick="verPaciente('${p.id}')">
       <td><strong>${p.nombre}</strong></td>
-      <td>${p.diag || '—'}</td>
-      <td>${p.kine || '—'}</td>
+      <td style="font-size:12px">${p.diag||'—'}</td>
+      <td>${p.kine||'—'}</td>
       <td>${fmt(p.fecha)}</td>
       <td><span class="badge ${p.estado==='Alta'?'badge-verde':'badge-naranja'}">${p.estado}</span></td>
     </tr>`).join('')}</tbody></table>`;
 }
 
-// ── PERFIL ──
-function verPaciente(id) {
-  pacActual = DB.find(p => p.id === id);
-  if (!pacActual) return;
-  const p = pacActual;
-  document.getElementById('perfil-nombre-top').textContent = p.nombre;
-  document.getElementById('perfil-nombre').textContent = p.nombre;
-  document.getElementById('perfil-avatar').textContent = ini(p.nombre);
-  document.getElementById('perfil-sub').textContent = [p.diag, p.region && p.lat ? p.region + ' ' + p.lat : p.region].filter(Boolean).join(' · ');
-  document.getElementById('perfil-kine').textContent = p.kine || 'Sin asignar';
+function semaforo(p){
+  if(p.estado==='Alta') return '<span class="semaforo sem-verde">● Alta médica</span>';
+  if(!p.severidad) return '<span class="semaforo sem-gris">● Sin clasificar</span>';
+  if(p.severidad.includes('Severa')) return '<span class="semaforo sem-rojo">● Severa</span>';
+  if(p.severidad.includes('Moderada')) return '<span class="semaforo sem-naranja">● Moderada</span>';
+  return '<span class="semaforo sem-verde">● '+p.severidad.split(' ')[0]+'</span>';
+}
+
+function verPaciente(id){
+  pacActual=DB.find(p=>p.id===id);
+  if(!pacActual)return;
+  const p=pacActual;
+  document.getElementById('perfil-nombre-top').textContent=p.nombre;
+  document.getElementById('perfil-nombre').textContent=p.nombre;
+  document.getElementById('perfil-avatar').textContent=ini(p.nombre);
+  document.getElementById('perfil-sub').textContent=[p.diag,p.region&&p.lado?p.region+' '+p.lado:p.region].filter(Boolean).join(' · ');
+  document.getElementById('perfil-kine').textContent=p.kine||'Sin asignar';
+  document.getElementById('perfil-semaforo').innerHTML=semaforo(p);
   renderFichaPerfil();
   renderSesiones();
   document.querySelectorAll('.tab-btn')[0].click();
   showPage('perfil');
-  document.querySelectorAll('.sb-btn, .mob-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.sb-btn,.mob-btn').forEach(b=>b.classList.remove('active'));
 }
 
-function renderFichaPerfil() {
-  const p = pacActual;
-  const acts = p.actividades?.length ? p.actividades.map(a => `${a.dep}${a.niv?' ('+a.niv+')':''}${a.frec?' · '+a.frec:''}`).join('<br>') : '—';
-  const links = p.links?.length ? p.links.map(l => l.startsWith('http') ? `<a href="${l}" target="_blank" style="color:var(--azul-mid);font-size:12px">${l}</a>` : `<span style="font-size:12px">${l}</span>`).join('<br>') : '—';
-  const tests = p.tests?.length ? p.tests.join(', ') : '—';
-  const cis = p.cis?.length ? p.cis.join(', ') : 'Ninguna';
-
-  document.getElementById('ficha-perfil-content').innerHTML = `
-    <div class="detail-grid">
-      ${db('Datos personales',[['DNI',p.dni],['Nacimiento',fmt(p.nac)],['Sexo',p.sexo],['Tel.',p.tel],['Cobertura',p.cob],['Médico',p.medico],['Ocupación',p.ocup]])}
-      ${db('Diagnóstico',[['Diagnóstico',p.diag],['Región',p.region],['Lateralidad',p.lat],['Evolución',p.evol],['Mecanismo',p.mec]])}
-      <div class="detail-block" style="grid-column:1/-1">
-        <h3>Signos, síntomas y antecedentes</h3>
-        <div class="drow"><div class="dl">Síntomas</div><div class="dv">${p.sint||'—'}</div></div>
-        <div class="drow"><div class="dl">Antecedentes</div><div class="dv">${p.ant||'—'}</div></div>
-      </div>
-      ${p.cx ? db('Post-quirúrgico',[['Procedimiento',p.cx],['Fecha Cx',fmt(p.fechaCx)],['Cirujano',p.ciru],['Semana PQ',p.spq]]) : ''}
-      ${db('Evaluación inicial',[['ROM sano',p.roms],['ROM afectado',p.roma],['Fuerza',p.fuerza],['Tests positivos',tests],['EVA reposo',p.evaRep+'/10'],['EVA actividad',p.evaAct+'/10']])}
-      <div class="detail-block">
-        <h3>Deporte y actividad</h3>
-        <div class="dv">${acts}</div>
-      </div>
-      <div class="detail-block">
-        <h3>Contraindicaciones</h3>
-        <div class="dv">${cis}</div>
-        ${p.links?.length ? '<div class="drow" style="margin-top:8px"><div class="dl">Estudios y links</div><div class="dv">'+links+'</div></div>' : ''}
-      </div>
-      ${db('Plan',[['Objetivos',p.obj],['Plan inicial',p.plan],['Observaciones',p.obs]])}
-    </div>
-    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:1rem">
-      <button class="btn btn-secondary btn-sm" onclick="toggleEstado('${p.id}')">${p.estado==='Alta'?'Reactivar':'Dar de alta'}</button>
-    </div>`;
+function db(titulo,campos){
+  const filas=campos.filter(([,v])=>v).map(([l,v])=>`<div class="drow"><div class="dl">${l}</div><div class="dv">${v}</div></div>`).join('');
+  return filas?`<div class="detail-block"><h3>${titulo}</h3>${filas}</div>`:'';
 }
 
-function db(titulo, campos) {
-  const filas = campos.filter(([,v]) => v).map(([l,v]) => `<div class="drow"><div class="dl">${l}</div><div class="dv">${v}</div></div>`).join('');
-  return filas ? `<div class="detail-block"><h3>${titulo}</h3>${filas}</div>` : '';
-}
-
-function toggleEstado(id) {
-  const p = DB.find(p => p.id === id);
-  if (!p) return;
-  p.estado = p.estado === 'Alta' ? 'En curso' : 'Alta';
+function toggleEstado(id){
+  const p=DB.find(p=>p.id===id);
+  if(!p)return;
+  p.estado=p.estado==='Alta'?'En curso':'Alta';
+  if(p.estado==='Alta')p.fechaAlta=hoy();
   save();
-  toast(p.estado === 'Alta' ? 'Paciente dado de alta' : 'Paciente reactivado');
+  toast(p.estado==='Alta'?'Paciente dado de alta':'Paciente reactivado');
   renderFichaPerfil();
+  document.getElementById('perfil-semaforo').innerHTML=semaforo(p);
 }
 
-// ── SESIONES ──
-function renderSesiones() {
-  if (!pacActual) return;
-  const ses = pacActual.sesiones || [];
-  document.getElementById('sesiones-content').innerHTML = ses.length
-    ? '<div class="timeline">' + [...ses].reverse().map(s => `
+function renderSesiones(){
+  if(!pacActual)return;
+  const ses=pacActual.sesiones||[];
+  document.getElementById('sesiones-content').innerHTML=ses.length
+    ?'<div class="timeline">'+[...ses].reverse().map(s=>`
         <div class="tl-item">
           <span class="tl-eva">Rep ${s.evaRep} / Act ${s.evaAct}</span>
           <div class="tl-fecha">${fmt(s.fecha)}</div>
-          <div class="tl-evol">${s.evol || 'Sesión registrada'}</div>
-          ${s.tec ? `<div class="tl-det"><strong>Técnicas:</strong> ${s.tec}</div>` : ''}
-          ${s.notas ? `<div class="tl-det">${s.notas}</div>` : ''}
-        </div>`).join('') + '</div>'
-    : '<div class="empty"><p>Sin sesiones registradas.</p><button class="btn btn-primary btn-sm" onclick="abrirModalSesion()">+ Primera sesión</button></div>';
+          <div class="tl-evol">${s.evol||'Sesión registrada'}</div>
+          ${s.tec?`<div class="tl-det"><strong>Técnicas:</strong> ${s.tec}</div>`:''}
+          ${s.notas?`<div class="tl-det">${s.notas}</div>`:''}
+        </div>`).join('')+'</div>'
+    :'<div class="empty"><p>Sin sesiones registradas.</p><button class="btn btn-primary btn-sm" onclick="abrirModalSesion()">+ Primera sesión</button></div>';
 }
 
-function abrirModalSesion() {
-  document.getElementById('s-fecha').value = hoy();
-  document.getElementById('s-eva-rep').value = 0;
-  document.getElementById('s-eva-act').value = 0;
-  document.getElementById('s-eva-rep-v').textContent = '0';
-  document.getElementById('s-eva-act-v').textContent = '0';
-  document.getElementById('s-tec').value = '';
-  document.getElementById('s-evol').value = '';
-  document.getElementById('s-notas').value = '';
+function abrirModalSesion(){
+  document.getElementById('s-fecha').value=hoy();
+  document.getElementById('s-eva-rep').value=0;
+  document.getElementById('s-eva-act').value=0;
+  document.getElementById('s-eva-rep-v').textContent='0';
+  document.getElementById('s-eva-act-v').textContent='0';
+  document.getElementById('s-tec').value='';
+  document.getElementById('s-evol').value='';
+  document.getElementById('s-notas').value='';
   document.getElementById('modal-sesion').classList.add('open');
 }
 
-function cerrarModal() { document.getElementById('modal-sesion').classList.remove('open'); }
+function cerrarModal(){document.getElementById('modal-sesion').classList.remove('open');}
 
-function guardarSesion() {
-  if (!pacActual) return;
-  const s = {
-    id: Date.now().toString(),
-    fecha: document.getElementById('s-fecha').value,
-    evaRep: document.getElementById('s-eva-rep').value,
-    evaAct: document.getElementById('s-eva-act').value,
-    tec: document.getElementById('s-tec').value,
-    evol: document.getElementById('s-evol').value,
-    notas: document.getElementById('s-notas').value
-  };
-  if (!pacActual.sesiones) pacActual.sesiones = [];
+function guardarSesion(){
+  if(!pacActual)return;
+  const s={id:Date.now().toString(),fecha:document.getElementById('s-fecha').value,evaRep:document.getElementById('s-eva-rep').value,evaAct:document.getElementById('s-eva-act').value,tec:document.getElementById('s-tec').value,evol:document.getElementById('s-evol').value,notas:document.getElementById('s-notas').value};
+  if(!pacActual.sesiones)pacActual.sesiones=[];
   pacActual.sesiones.push(s);
-  const idx = DB.findIndex(p => p.id === pacActual.id);
-  if (idx >= 0) DB[idx] = pacActual;
-  save();
-  cerrarModal();
-  renderSesiones();
+  const idx=DB.findIndex(p=>p.id===pacActual.id);
+  if(idx>=0)DB[idx]=pacActual;
+  save();cerrarModal();renderSesiones();
   document.querySelectorAll('.tab-btn')[1].click();
   toast('Sesión guardada');
 }
 
-// ── CARGAS ──
-function renderCargas() {
-  if (!pacActual) return;
-  const cargas = pacActual.cargas || [];
-  const tot = cargas.reduce((a, c) => a + (parseInt(c.srpe) || 0), 0);
-  document.getElementById('cargas-content').innerHTML = `
+function renderCargas(){
+  if(!pacActual)return;
+  const cargas=pacActual.cargas||[];
+  const tot=cargas.reduce((a,c)=>a+(parseInt(c.srpe)||0),0);
+  document.getElementById('cargas-content').innerHTML=`
     <div class="card" style="padding:1rem">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem">
-        <div>
-          <strong style="font-size:13px">Control de cargas</strong>
-          ${cargas.length ? `<span style="font-size:12px;color:var(--gris-text);margin-left:8px">Carga total: <strong style="color:var(--azul-mid)">${tot}</strong> UA</span>` : ''}
-        </div>
+        <div><strong style="font-size:13px">Control de cargas</strong>${cargas.length?`<span style="font-size:12px;color:var(--gris-text);margin-left:8px">Carga total: <strong style="color:var(--azul-mid)">${tot}</strong> UA</span>`:''}</div>
         <button class="btn btn-primary btn-sm" onclick="addCarga()">+ Agregar día</button>
       </div>
       <div class="cargas-wrap">
         <table class="ctable">
-          <thead><tr><th>Día / Fecha</th><th>Semana</th><th>Estímulo</th><th>Duración (min)</th><th>Esfuerzo (RPE)</th><th>S-RPE</th><th></th></tr></thead>
-          <tbody id="cargas-body">${cargas.map((c, i) => cargaFila(c, i)).join('')}</tbody>
+          <thead><tr><th>Día / Fecha</th><th>Semana</th><th>Estímulo</th><th>Duración (min)</th><th>Esfuerzo (RPE 1-10)</th><th>S-RPE</th><th></th></tr></thead>
+          <tbody id="cargas-body">${cargas.map((c,i)=>cargaFila(c,i)).join('')}</tbody>
         </table>
       </div>
     </div>`;
 }
 
-function cargaFila(c, i) {
-  return `<tr>
+function cargaFila(c,i){
+  return`<tr>
     <td><input value="${c.dia||''}" oninput="updCarga(${i},'dia',this.value)" placeholder="Lunes 23/6"></td>
     <td><input type="number" value="${c.sem||''}" oninput="updCarga(${i},'sem',this.value)" placeholder="1" style="width:45px"></td>
-    <td><select onchange="updCarga(${i},'est',this.value)">
-      <option value="${c.est||''}">${c.est||'—'}</option>
-      <option>Entrenamiento</option><option>Partido</option><option>Gym</option>
-      <option>Kinesiología</option><option>Yoga</option><option>Natación</option><option>Otro</option>
-    </select></td>
+    <td><select onchange="updCarga(${i},'est',this.value)"><option value="${c.est||''}">${c.est||'—'}</option><option>Entrenamiento</option><option>Partido</option><option>Gym</option><option>Kinesiología</option><option>Yoga</option><option>Natación</option><option>Otro</option></select></td>
     <td><input type="number" value="${c.dur||''}" oninput="updCarga(${i},'dur',this.value);calcSRPE(${i})" placeholder="60" style="width:55px"></td>
     <td><input type="number" min="1" max="10" value="${c.rpe||''}" oninput="updCarga(${i},'rpe',this.value);calcSRPE(${i})" placeholder="6" style="width:45px"></td>
     <td><span class="srpe" id="srpe-${i}">${c.srpe||'—'}</span></td>
-    <td><button class="btn-del" onclick="delCarga(${i})">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
-    </button></td>
+    <td><button class="btn-del" onclick="delCarga(${i})"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></button></td>
   </tr>`;
 }
 
-function addCarga() {
-  if (!pacActual.cargas) pacActual.cargas = [];
-  pacActual.cargas.push({ dia:'', sem:'', est:'', dur:'', rpe:'', srpe:'' });
-  updDB();
-  renderCargas();
+function addCarga(){if(!pacActual.cargas)pacActual.cargas=[];pacActual.cargas.push({dia:'',sem:'',est:'',dur:'',rpe:'',srpe:''});updDB();renderCargas();}
+function updCarga(i,k,v){if(pacActual.cargas[i]){pacActual.cargas[i][k]=v;updDB();}}
+function calcSRPE(i){const c=pacActual.cargas[i];const s=parseInt(c.dur||0)*parseInt(c.rpe||0);c.srpe=s||'';const el=document.getElementById('srpe-'+i);if(el)el.textContent=s||'—';updDB();}
+function delCarga(i){pacActual.cargas.splice(i,1);updDB();renderCargas();}
+function updDB(){const idx=DB.findIndex(p=>p.id===pacActual.id);if(idx>=0)DB[idx]=pacActual;save();}
+
+function renderLesiones(){
+  const lesiones=DB.filter(p=>p.diag||p.patologia);
+  const tot=lesiones.length;
+  const porRegion={};
+  lesiones.forEach(p=>{if(p.region)porRegion[p.region]=(porRegion[p.region]||0)+1;});
+  const topRegion=Object.entries(porRegion).sort((a,b)=>b[1]-a[1])[0];
+  const severas=lesiones.filter(p=>p.severidad&&p.severidad.includes('Severa')).length;
+  document.getElementById('stats-lesiones').innerHTML=`
+    <div class="stat"><div class="num">${tot}</div><div class="lbl">Lesiones registradas</div></div>
+    <div class="stat"><div class="num">${topRegion?topRegion[0]:'—'}</div><div class="lbl">Región más frecuente</div>${topRegion?`<div class="sub">${topRegion[1]} casos</div>`:''}</div>
+    <div class="stat"><div class="num">${severas}</div><div class="lbl">Lesiones severas (>28d)</div></div>`;
+  if(!lesiones.length){
+    document.getElementById('tabla-lesiones').innerHTML='<div class="empty"><p>No hay lesiones registradas todavía. Se completan automáticamente al cargar fichas de ingreso.</p></div>';
+    return;
+  }
+  document.getElementById('tabla-lesiones').innerHTML=`<table>
+    <thead><tr><th>Paciente</th><th>Diagnóstico</th><th>Región</th><th>Tejido</th><th>Mecanismo</th><th>Severidad</th><th>Estado</th></tr></thead>
+    <tbody>${lesiones.map(p=>`<tr onclick="verPaciente('${p.id}')">
+      <td><strong>${p.nombre}</strong></td>
+      <td style="font-size:12px">${p.diag||p.patologia||'—'}</td>
+      <td>${p.region||'—'}</td>
+      <td>${p.tejido||'—'}</td>
+      <td>${p.mecanismo||'—'}</td>
+      <td>${p.severidad?`<span class="badge ${p.severidad.includes('Severa')?'badge-rojo':p.severidad.includes('Moderada')?'badge-naranja':'badge-verde'}">${p.severidad.split(' ')[0]}</span>`:'—'}</td>
+      <td><span class="badge ${p.estado==='Alta'?'badge-verde':'badge-naranja'}">${p.estado}</span></td>
+    </tr>`).join('')}</tbody>
+  </table>`;
 }
 
-function updCarga(i, k, v) {
-  if (pacActual.cargas[i]) { pacActual.cargas[i][k] = v; updDB(); }
-}
-
-function calcSRPE(i) {
-  const c = pacActual.cargas[i];
-  const s = parseInt(c.dur || 0) * parseInt(c.rpe || 0);
-  c.srpe = s || '';
-  const el = document.getElementById('srpe-' + i);
-  if (el) el.textContent = s || '—';
-  updDB();
-}
-
-function delCarga(i) {
-  pacActual.cargas.splice(i, 1);
-  updDB();
-  renderCargas();
-}
-
-function updDB() {
-  const idx = DB.findIndex(p => p.id === pacActual.id);
-  if (idx >= 0) DB[idx] = pacActual;
-  save();
-}
-
-// ── INIT ──
-document.getElementById('modal-sesion').addEventListener('click', function(e) { if (e.target === this) cerrarModal(); });
-document.getElementById('f-fecha').value = hoy();
+document.getElementById('modal-sesion').addEventListener('click',function(e){if(e.target===this)cerrarModal();});
+document.getElementById('f-fecha').value=hoy();
 renderInicio();
 </script>
 </body>
